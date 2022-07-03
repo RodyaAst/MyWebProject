@@ -22,9 +22,10 @@ export class StartPageComponent implements OnInit {
   }
 
   public confirmForm():void {
-    this.http.post(this.BASE_URL + "/add", this.newUser)
-      .subscribe(res => console.log(res));
-    this.getUsers();
+    this.http.post<string>(this.BASE_URL + "/add", this.newUser)
+      .subscribe(() => {
+        this.getUsers();
+      })
   }
 
   private getUsers() {
