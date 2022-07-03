@@ -8,27 +8,29 @@ import {HttpClient} from "@angular/common/http";
 })
 export class StartPageComponent implements OnInit {
 
-  private static URL: string = "http://localhost:8080/user/byId?id=1";
-  private static URL2: string = "https://jsonplaceholder.typicode.com/todos?_limit=2"
+  private BASE_URL: string = "http://localhost:8080/user";
   public user: UserEntry = {};
-  public test: string = "One";
+  public newUser: UserEntry = {};
+  public userList: UserEntry[] = [];
+  public number: number = 1;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getUsers();
+  }
 
   ngOnInit(): void {
   }
 
   public confirmForm():void {
-    this.http.get(StartPageComponent.URL)
-      .subscribe(res => {
-        this.user = res;
-        this.test = "two";
-        console.log(this.user);
-        console.log("-----");
-        console.log(this.user.name);
-        console.log("-----");
-        console.log(this.user.age);
-      })
+    this.http.post(this.BASE_URL + "/add", this.newUser)
+      .subscribe(res => console.log(res));
+    this.getUsers();
   }
 
+  private getUsers() {
+    this.http.get<UserEntry[]>(this.BASE_URL + "/users")
+      .subscribe(res => {
+        this.userList = res;
+      })
+  }
 }

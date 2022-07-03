@@ -1,5 +1,6 @@
 package com.mywebapp.medicineproject.controllers;
 
+import com.mywebapp.medicineproject.inputs.UserInput;
 import com.mywebapp.medicineproject.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
@@ -22,9 +23,15 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<?> showAllUsers() {
+        var userList = userService.findAllUsers();
+        return ResponseEntity.ok(userList);
+    }
+
     @PostMapping("/add")
-    public ResponseEntity<?> addUser(@NonNull String name) {
-        userService.addUser(name);
+    public ResponseEntity<?> addUser(@NonNull @RequestBody UserInput user) {
+        userService.addUser(user);
         return ResponseEntity.ok("user added");
     }
 }

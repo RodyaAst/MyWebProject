@@ -26,10 +26,10 @@ export class UserComponent {
   }
 
   public cleanFormName(): void {
-    this.user.name = "";
+    this.user.firstName = "";
   }
 
   public cleanFormAge(): void {
-    this.user.age = undefined;
+    this.user.firstName = undefined;
   }
 }

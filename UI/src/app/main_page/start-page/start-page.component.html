@@ -2,20 +2,79 @@
   <div>
     <p>Hello new user, please enter ur data</p>
   </div>
-  <div class="form">
-    <input id="username" type="text" [(ngModel)]="user.name"/>
-    <label for="username">Введите имя</label>
-  </div>
-  <div class="form">
-    <input id="age" type="text" [(ngModel)]="user.age"/>
-    <label for="age">Введите возраст</label>
-  </div>
   <div>
-    <button type="submit" (click)="confirmForm()">Подтвердить</button>
+    <div class="form">
+      <input id="firstName" type="text" [(ngModel)]="newUser.firstName" required/>
+      <label for="firstName">Введите имя</label>
+    </div>
+    <div class="form">
+      <input id="lastName" type="text" [(ngModel)]="newUser.lastName" required/>
+      <label for="lastName">Введите фамилию</label>
+    </div>
+    <div class="form">
+      <input id="birthDate" type="date" [(ngModel)]="newUser.birthdate" required/>
+      <label for="birthDate">Введите дату рождения</label>
+    </div>
+    <div class="form">
+      <input id="currentFrom" type="text" [(ngModel)]="newUser.currentFrom" required/>
+      <label for="currentFrom">Откуда вы</label>
+    </div>
+    <div>
+      <button type="submit" (click)="confirmForm()">Подтвердить</button>
+    </div>
   </div>
-  <div *ngIf="user">
-    <p>Тут юзер</p>
-    <p>{{user.name}}</p>
-    <p>{{user.age}}</p>
+  <div style="margin-top: 20px">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>
+          First Name
+        </th>
+        <th>
+          Last Name
+        </th>
+        <th>
+          Birthdate
+        </th>
+        <th>
+          Current from
+        </th>
+        <th>
+          Job name
+        </th>
+        <th>
+          Salary
+        </th>
+        <th>
+          Since
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of userList">
+        <td>
+          {{u.firstName}}
+        </td>
+        <td>
+          {{u.lastName}}
+        </td>
+        <td>
+          {{u.birthdate}}
+        </td>
+        <td>
+          {{u.currentFrom}}
+        </td>
+        <td>
+          {{u.job?.name}}
+        </td>
+        <td>
+          {{u.job?.salary}}
+        </td>
+        <td>
+          {{u.job?.since}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

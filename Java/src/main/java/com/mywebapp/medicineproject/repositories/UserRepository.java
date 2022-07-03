@@ -2,8 +2,11 @@ package com.mywebapp.medicineproject.repositories;
 
 import com.mywebapp.medicineproject.dao.Dao;
 import com.mywebapp.medicineproject.entities.User;
+import com.mywebapp.medicineproject.inputs.UserInput;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserRepository {
@@ -18,7 +21,16 @@ public class UserRepository {
         return dao.byId(User.class, id);
     }
 
-    public void addUser(String name) {
-        dao.add(User.builder().name(name).build());
+    public void addUser(UserInput user) {
+        dao.add(User.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .birthdate(user.getBirthdate())
+                .currentFrom(user.getCurrentFrom())
+                .build());
+    }
+
+    public List<User> findAllUsers() {
+        return dao.getAll(User.class);
     }
 }
