@@ -1,0 +1,27 @@
+<div>
+  <div>
+    <input type="text" [(ngModel)]="user.name"/>
+    <button (click)="cleanFormName()">CleanForm</button>
+  </div>
+  <div>
+    <input type="text" [(ngModel)]="user.age"/>
+    <button (click)="cleanFormAge()">CleanForm</button>
+  </div>
+  <div>{{user.name}}</div>
+  <div>{{user.age}}</div>
+  <br/>
+  <table>
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of users">
+      <td>{{u.name}}</td>
+      <td>{{u.age}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

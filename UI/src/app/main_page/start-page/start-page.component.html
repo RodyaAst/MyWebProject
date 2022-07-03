@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <p>Hello new user, please enter ur data</p>
+  </div>
+  <div class="form">
+    <input id="username" type="text" [(ngModel)]="user.name"/>
+    <label for="username">Введите имя</label>
+  </div>
+  <div class="form">
+    <input id="age" type="text" [(ngModel)]="user.age"/>
+    <label for="age">Введите возраст</label>
+  </div>
+  <div>
+    <button type="submit" (click)="confirmForm()">Подтвердить</button>
+  </div>
+  <div *ngIf="user">
+    <p>Тут юзер</p>
+    <p>{{user.name}}</p>
+    <p>{{user.age}}</p>
+  </div>
+</div>
