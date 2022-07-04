@@ -1,0 +1,28 @@
+.main-header {
+  background: #1a1a1a;
+  height: 70px;
+  width: 100%;
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  background-position-y: center;
+}
+
+.margin-left {
+  margin-right: 25px;
+}
+
+.margin-middle {
+  margin-right: 25px;
+  margin-left: 25px;
+}
+
+.margin-right {
+  margin-left: 25px;
+}
+
+.color-white {
+  color: #ffffff;
+}

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserEntry} from "../../user/UserEntry";
 import {HttpClient} from "@angular/common/http";
+import {UserService} from "../../services/UserService";
 
 @Component({
   selector: 'app-start-page',
@@ -14,24 +15,23 @@ export class StartPageComponent implements OnInit {
   public userList: UserEntry[] = [];
   public number: number = 1;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private userService: UserService) {
     this.getUsers();
   }
 
   ngOnInit(): void {
   }
 
-  public confirmForm():void {
-    this.http.post<string>(this.BASE_URL + "/add", this.newUser)
+  public confirmForm(): void {
+    this.userService.addUser(this.newUser)
       .subscribe(() => {
         this.getUsers();
-      })
+      });
   }
 
   private getUsers() {
-    this.http.get<UserEntry[]>(this.BASE_URL + "/users")
-      .subscribe(res => {
-        this.userList = res;
-      })
+    this.userService.getUsers()
+      .subscribe(result => this.userList = result)
   }
 }
