@@ -25,18 +25,18 @@
     <div>
       <p>При наличии, укажите ваше место работы</p>
     </div>
-<!--    <div class="form">-->
-<!--      <input id="jobName" type="text" [(ngModel)]="newUser.job.name"/>-->
-<!--      <label for="jobName">Названия компании</label>-->
-<!--    </div>-->
-<!--    <div class="form">-->
-<!--      <input id="jobSalary" type="number" [(ngModel)]="newUser.job.salary"/>-->
-<!--      <label for="jobName">зароботная плата</label>-->
-<!--    </div>-->
-<!--    <div class="form">-->
-<!--      <input id="jobSince" type="date" [(ngModel)]="newUser.job.since"/>-->
-<!--      <label for="jobSince">С какого числа работаете</label>-->
-<!--    </div>-->
+<!--        <div class="form">-->
+<!--          <input id="jobName" type="text" [(ngModel)]="newUser.job.name"/>-->
+<!--          <label for="jobName">Названия компании</label>-->
+<!--        </div>-->
+    <!--    <div class="form">-->
+    <!--      <input id="jobSalary" type="number" [(ngModel)]="newUser.job.salary"/>-->
+    <!--      <label for="jobName">зароботная плата</label>-->
+    <!--    </div>-->
+    <!--    <div class="form">-->
+    <!--      <input id="jobSince" type="date" [(ngModel)]="newUser.job.since"/>-->
+    <!--      <label for="jobSince">С какого числа работаете</label>-->
+    <!--    </div>-->
   </div>
   <div style="margin-top: 20px">
     <div>
@@ -95,5 +95,83 @@
       </tr>
       </tbody>
     </table>
+  </div>
+  <div>
+    <div>
+      <p>Блок поиска по фильтрам</p>
+      <div>
+        <input id="fir" type="text" [(ngModel)]="filter.firstName"/>
+        <label for="fir">Имя</label>
+      </div>
+      <div>
+        <input id="last" type="text" [(ngModel)]="filter.lastName"/>
+        <label for="last">Фамилия</label>
+      </div>
+      <div>
+        <input id="date" type="date" [(ngModel)]="filter.birthday"/>
+        <label for="date">Дата рождения</label>
+      </div>
+      <div>
+        <input id="cur" type="text" [(ngModel)]="filter.currentFrom"/>
+        <label for="cur">Откуда</label>
+      </div>
+      <div>
+        <button type="submit" (click)="getUsersByFilters()">Поиск</button>
+      </div>
+    </div>
+    <div [hidden]="!usersByFilters">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>
+            First Name
+          </th>
+          <th>
+            Last Name
+          </th>
+          <th>
+            Birthdate
+          </th>
+          <th>
+            Current from
+          </th>
+          <th>
+            Job name
+          </th>
+          <th>
+            Salary
+          </th>
+          <th>
+            Since
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let u of usersByFilters">
+          <td>
+            {{u.firstName}}
+          </td>
+          <td>
+            {{u.lastName}}
+          </td>
+          <td>
+            {{u.birthdate}}
+          </td>
+          <td>
+            {{u.currentFrom}}
+          </td>
+          <td>
+            {{u.job?.name}}
+          </td>
+          <td>
+            {{u.job?.salary}}
+          </td>
+          <td>
+            {{u.job?.since}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

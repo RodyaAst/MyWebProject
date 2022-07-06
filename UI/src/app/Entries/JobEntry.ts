@@ -1,6 +1,6 @@
 export interface JobEntry{
-  id?: number;
-  name?: string;
-  salary?: number;
+  id?: Number;
+  name?: String;
+  salary?: String;
   since?: Date;
 }

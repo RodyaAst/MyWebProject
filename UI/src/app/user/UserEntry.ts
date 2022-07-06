@@ -1,10 +1,10 @@
 import {JobEntry} from "../Entries/JobEntry";
 
 export interface UserEntry {
-  id?: number;
-  firstName?: string;
-  lastName?: number;
+  id?: Number;
+  firstName?: String;
+  lastName?: Number;
   birthdate?: Date;
-  currentFrom?: string;
+  currentFrom?: String;
   job?: JobEntry;
 }

@@ -20,4 +20,8 @@ export class UserService {
   public getUsers(): Observable<UserEntry[]> {
     return this.$http.get<UserEntry[]>(this.URL_BASE + "/users");
   }
+
+  public getByFilters(firstName: String, lastName: String, birthDay: Date, currentFrom: String): Observable<UserEntry[]> {
+    return this.$http.get<UserEntry[]>(this.URL_BASE + `/usersByFilters?firstName=${firstName}&lastName=${lastName}&birthday=${birthDay}&currentFrom=${currentFrom}`);
+  }
 }

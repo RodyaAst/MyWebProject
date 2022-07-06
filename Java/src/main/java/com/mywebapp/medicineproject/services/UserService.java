@@ -8,6 +8,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,7 +34,7 @@ public class UserService {
         return userRepository.findAllUsers();
     }
 
-    public List<User> findByFilters() {
-        return userRepository.findByFilters();
+    public List<User> findByFilters(String firstName, String lastName, LocalDate birthday, String currentFrom) {
+        return userRepository.findByFilters(firstName, lastName, birthday, currentFrom);
     }
 }

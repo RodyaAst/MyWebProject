@@ -39,7 +39,7 @@ public class UserController {
                                                 @RequestParam(required = false) String lastName,
                                                 @RequestParam(required = false) LocalDate birthday,
                                                 @RequestParam(required = false) String currentFrom) {
-        var userList = userService.findByFilters();
+        var userList = userService.findByFilters(firstName, lastName, birthday, currentFrom);
         log.info(userList.toString());
         return ResponseEntity.ok(userList);
     }
