@@ -2,13 +2,17 @@ package com.mywebapp.medicineproject.controllers;
 
 import com.mywebapp.medicineproject.inputs.UserInput;
 import com.mywebapp.medicineproject.services.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -26,6 +30,17 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<?> showAllUsers() {
         var userList = userService.findAllUsers();
+        log.info(userList.toString());
+        return ResponseEntity.ok(userList);
+    }
+
+    @GetMapping("/usersByFilters")
+    public ResponseEntity<?> showUsersByFilters(@RequestParam(required = false) String firstName,
+                                                @RequestParam(required = false) String lastName,
+                                                @RequestParam(required = false) LocalDate birthday,
+                                                @RequestParam(required = false) String currentFrom) {
+        var userList = userService.findByFilters();
+        log.info(userList.toString());
         return ResponseEntity.ok(userList);
     }
 
@@ -34,4 +49,6 @@ public class UserController {
         userService.addUser(user);
         return ResponseEntity.ok().build();
     }
+
+
 }

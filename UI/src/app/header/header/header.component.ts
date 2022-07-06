@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public num: number = 0;
+  public underText: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
@@ -15,9 +17,11 @@ export class HeaderComponent implements OnInit {
 
   public onFocusUp():void {
     this.num+=1;
+    this.underText = "text-underline";
   }
 
   public onFocusDown():void {
     this.num-=1;
+    this.underText = "";
   }
 }

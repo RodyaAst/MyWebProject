@@ -3,12 +3,14 @@ package com.mywebapp.medicineproject.repositories;
 import com.mywebapp.medicineproject.dao.Dao;
 import com.mywebapp.medicineproject.entities.User;
 import com.mywebapp.medicineproject.inputs.UserInput;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@Slf4j
 public class UserRepository {
 
     private final Dao dao;
@@ -32,5 +34,10 @@ public class UserRepository {
 
     public List<User> findAllUsers() {
         return dao.getAll(User.class);
+    }
+
+    public List<User> findByFilters() {
+        var session = dao.getSession();
+        return List.of();
     }
 }

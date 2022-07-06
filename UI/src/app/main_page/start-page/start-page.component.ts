@@ -14,6 +14,7 @@ export class StartPageComponent implements OnInit {
   public newUser: UserEntry = {};
   public userList: UserEntry[] = [];
   public number: number = 1;
+  public isDeleteJobLess: boolean = false;
 
   constructor(private http: HttpClient,
               private userService: UserService) {
@@ -33,5 +34,10 @@ export class StartPageComponent implements OnInit {
   private getUsers() {
     this.userService.getUsers()
       .subscribe(result => this.userList = result)
+  }
+
+  
+  public hideJobless() {
+
   }
 }

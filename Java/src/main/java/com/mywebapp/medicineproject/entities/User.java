@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Builder
 @Getter
 @Setter
+@ToString
 public class User extends BaseEntity {
 
     @Column(name = "first_name")
