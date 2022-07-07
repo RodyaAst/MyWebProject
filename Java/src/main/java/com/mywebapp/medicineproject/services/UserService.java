@@ -26,8 +26,8 @@ public class UserService {
         return userRepository.getById(id);
     }
 
-    public void addUser(UserInput user) {
-        userRepository.addUser(user);
+    public User addUser(UserInput user) {
+        return userRepository.addUser(user);
     }
 
     public List<User> findAllUsers() {
@@ -36,5 +36,13 @@ public class UserService {
 
     public List<User> findByFilters(String firstName, String lastName, LocalDate birthday, String currentFrom) {
         return userRepository.findByFilters(firstName, lastName, birthday, currentFrom);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteUser(id);
+    }
+
+    public void updateUser(User user) {
+        userRepository.updateUser(user);
     }
 }

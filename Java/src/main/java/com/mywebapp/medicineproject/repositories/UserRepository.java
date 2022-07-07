@@ -2,9 +2,11 @@ package com.mywebapp.medicineproject.repositories;
 
 import com.mywebapp.medicineproject.dao.Dao;
 import com.mywebapp.medicineproject.dao.QPredicate;
+import com.mywebapp.medicineproject.entities.Job;
 import com.mywebapp.medicineproject.entities.User;
 import com.mywebapp.medicineproject.inputs.UserInput;
 import com.querydsl.jpa.impl.JPAQuery;
+import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
@@ -25,16 +27,26 @@ public class UserRepository {
     }
 
     public User getById(Long id) {
-        return dao.byId(User.class, id);
+        return dao.findById(User.class, id).orElseThrow();
     }
 
-    public void addUser(UserInput user) {
-        dao.add(User.builder()
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .birthdate(user.getBirthdate())
-                .currentFrom(user.getCurrentFrom())
-                .build());
+    public User addUser(UserInput userInput) {
+        var user = User.builder()
+                .firstName(userInput.getFirstName())
+                .lastName(userInput.getLastName())
+                .birthdate(userInput.getBirthdate())
+                .currentFrom(userInput.getCurrentFrom())
+                .build();
+        if (userInput.getJob() != null) {
+            var job = Job.builder()
+                    .name(userInput.getJob().getName())
+                    .salary(userInput.getJob().getSalary())
+                    .since(userInput.getJob().getSince())
+                    .build();
+            dao.add(job);
+            user.setJob(job);
+        }
+        return dao.add(user);
     }
 
     public List<User> findAllUsers() {
@@ -42,7 +54,7 @@ public class UserRepository {
     }
 
     public List<User> findByFilters(String firstName, String lastName, LocalDate birthday, String currentFrom) {
-        var session = dao.getSession();
+        @Cleanup var session = dao.getSession();
         var predicate = QPredicate.builder()
                 .add(firstName, user.firstName::eq)
                 .add(lastName, user.lastName::eq)
@@ -54,5 +66,13 @@ public class UserRepository {
                 .from(user)
                 .where(predicate)
                 .fetch();
+    }
+
+    public void deleteUser(Long id) {
+        dao.delete(id);
+    }
+
+    public void updateUser(User user) {
+        dao.update(user);
     }
 }

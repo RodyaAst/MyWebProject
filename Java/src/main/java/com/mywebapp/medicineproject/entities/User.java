@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -31,4 +32,8 @@ public class User extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "job_id")
     private Job job;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Document> document;
 }

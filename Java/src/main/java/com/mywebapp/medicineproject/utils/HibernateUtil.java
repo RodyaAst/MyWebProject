@@ -1,5 +1,6 @@
 package com.mywebapp.medicineproject.utils;
 
+import com.mywebapp.medicineproject.entities.Document;
 import com.mywebapp.medicineproject.entities.Job;
 import com.mywebapp.medicineproject.entities.User;
 import lombok.experimental.UtilityClass;
@@ -13,6 +14,7 @@ public class HibernateUtil {
         var configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Job.class);
+        configuration.addAnnotatedClass(Document.class);
         configuration.configure();
 
         return configuration.buildSessionFactory();

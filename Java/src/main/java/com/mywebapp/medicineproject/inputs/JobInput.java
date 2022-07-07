@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Setter
 public class JobInput {
 
-    private Long id;
     private String name;
     private Long salary;
     private LocalDate since;

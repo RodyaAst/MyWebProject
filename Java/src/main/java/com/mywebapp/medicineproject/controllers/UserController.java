@@ -21,8 +21,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/byId")
-    public ResponseEntity<?> showUser(@NonNull @RequestParam Long id) {
+    @GetMapping("/{id}/user")
+    public ResponseEntity<?> showUser(@NonNull @PathVariable Long id) {
         var user = userService.findUser(id);
         return ResponseEntity.ok(user);
     }
@@ -45,10 +45,22 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addUser(@NonNull @RequestBody UserInput user) {
-        userService.addUser(user);
+    public ResponseEntity<?> addUser(@NonNull @RequestBody UserInput userInput) {
+        var user = userService.addUser(userInput);
+        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> updateUser(@NonNull @PathVariable Long id) {
+        var user = userService.findUser(id);
+        userService.updateUser(user);
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<?> deleteUser(@NonNull @PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok().build();
+    }
 
 }
