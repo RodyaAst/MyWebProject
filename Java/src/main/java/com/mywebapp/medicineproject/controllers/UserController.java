@@ -24,15 +24,23 @@ public class UserController {
 
     @GetMapping("/{id}/user")
     public ResponseEntity<?> showUser(@NonNull @PathVariable Long id) {
-        var user = userService.findUser(id);
-        return ResponseEntity.ok(user);
+        try {
+            var user = userService.findUser(id);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping("/users")
     public ResponseEntity<?> showAllUsers() {
-        var userList = userService.findAllUsers();
-        log.info(userList.toString());
-        return ResponseEntity.ok(userList);
+        try {
+            var userList = userService.findAllUsers();
+            log.info(userList.toString());
+            return ResponseEntity.ok(userList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping("/usersByFilters")
@@ -40,9 +48,13 @@ public class UserController {
                                                 @RequestParam(required = false) String lastName,
                                                 @RequestParam(required = false) LocalDate birthday,
                                                 @RequestParam(required = false) String currentFrom) {
-        var userList = userService.findByFilters(firstName, lastName, birthday, currentFrom);
-        log.info(userList.toString());
-        return ResponseEntity.ok(userList);
+        try {
+            var userList = userService.findByFilters(firstName, lastName, birthday, currentFrom);
+            log.info(userList.toString());
+            return ResponseEntity.ok(userList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @PostMapping("/add")
@@ -57,15 +69,22 @@ public class UserController {
 
     @PutMapping("/{id}/update")
     public ResponseEntity<?> updateUser(@NonNull @PathVariable Long id) {
-        var user = userService.findUser(id);
-        userService.updateUser(user);
-        return ResponseEntity.ok().build();
+        try {
+            var user = userService.findUser(id);
+            userService.updateUser(user);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}/delete")
     public ResponseEntity<?> deleteUser(@NonNull @PathVariable Long id) {
-        userService.deleteUser(id);
-        return ResponseEntity.ok().build();
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
-
 }

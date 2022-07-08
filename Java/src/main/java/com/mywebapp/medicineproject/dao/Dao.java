@@ -22,7 +22,7 @@ public class Dao {
 
     public <T extends BaseEntity> List<T> getAll(Class<T> clazz) {
         @Cleanup var session = getSession();
-        return getSession().createCriteria(clazz).list();
+        return session.createCriteria(clazz).list();
     }
 
     public <T extends BaseEntity> Optional<T> findById(Class<T> clazz, Long id) {
