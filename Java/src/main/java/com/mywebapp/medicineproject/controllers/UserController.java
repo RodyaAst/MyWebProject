@@ -3,6 +3,7 @@ package com.mywebapp.medicineproject.controllers;
 import com.mywebapp.medicineproject.inputs.UserInput;
 import com.mywebapp.medicineproject.services.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,12 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<?> addUser(@NonNull @RequestBody UserInput userInput) {
-        var user = userService.addUser(userInput);
-        return ResponseEntity.ok(user);
+        try {
+            var user = userService.addUser(userInput);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @PutMapping("/{id}/update")

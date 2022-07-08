@@ -15,5 +15,5 @@ public class UserInput {
     private LocalDate birthdate;
     private String currentFrom;
     private JobInput job;
-    private List<DocumentInput> document;
+    private List<DocumentInput> documents;
 }

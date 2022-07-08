@@ -2,6 +2,7 @@ package com.mywebapp.medicineproject.repositories;
 
 import com.mywebapp.medicineproject.dao.Dao;
 import com.mywebapp.medicineproject.dao.QPredicate;
+import com.mywebapp.medicineproject.entities.Document;
 import com.mywebapp.medicineproject.entities.Job;
 import com.mywebapp.medicineproject.entities.User;
 import com.mywebapp.medicineproject.inputs.UserInput;
@@ -12,6 +13,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.mywebapp.medicineproject.entities.QUser.user;
@@ -43,8 +45,21 @@ public class UserRepository {
                     .salary(userInput.getJob().getSalary())
                     .since(userInput.getJob().getSince())
                     .build();
-            dao.add(job);
             user.setJob(job);
+        }
+        if (userInput.getDocuments() != null
+                && userInput.getDocuments().size() > 0) {
+            List<Document> documentList = new ArrayList<>();
+            userInput.getDocuments()
+                    .forEach(documentInput -> {
+                        var document = Document.builder()
+                                .name(documentInput.getName())
+                                .createdAt(documentInput.getCreatedAt())
+                                .data(documentInput.getData())
+                                .build();
+                        documentList.add(document);
+                    });
+            user.setDocument(documentList);
         }
         return dao.add(user);
     }

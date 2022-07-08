@@ -3,6 +3,7 @@ package com.mywebapp.medicineproject.services;
 import com.mywebapp.medicineproject.entities.User;
 import com.mywebapp.medicineproject.inputs.UserInput;
 import com.mywebapp.medicineproject.repositories.UserRepository;
+import com.mywebapp.medicineproject.validations.UserValidation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -17,17 +18,21 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserValidation userValidation;
 
-    public UserService(@NonNull UserRepository userRepository) {
+    public UserService(@NonNull UserRepository userRepository,
+                       @NonNull UserValidation userValidation) {
         this.userRepository = userRepository;
+        this.userValidation = userValidation;
     }
 
     public User findUser(Long id) {
         return userRepository.getById(id);
     }
 
-    public User addUser(UserInput user) {
-        return userRepository.addUser(user);
+    public User addUser(UserInput userInput) {
+        userValidation.validateUser(userInput);
+        return userRepository.addUser(userInput);
     }
 
     public List<User> findAllUsers() {

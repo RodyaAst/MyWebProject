@@ -29,11 +29,11 @@ public class User extends BaseEntity {
     @Column(name = "current_from")
     private String currentFrom;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_id")
     private Job job;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Document> document;
 }
