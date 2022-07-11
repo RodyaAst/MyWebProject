@@ -1,8 +1,6 @@
 package com.mywebapp.medicineproject.utils;
 
-import com.mywebapp.medicineproject.entities.Document;
-import com.mywebapp.medicineproject.entities.Job;
-import com.mywebapp.medicineproject.entities.User;
+import com.mywebapp.medicineproject.entities.*;
 import lombok.experimental.UtilityClass;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,6 +13,8 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Job.class);
         configuration.addAnnotatedClass(Document.class);
+        configuration.addAnnotatedClass(Drug.class);
+        configuration.addAnnotatedClass(MedicalCard.class);
         configuration.configure();
 
         return configuration.buildSessionFactory();

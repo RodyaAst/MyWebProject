@@ -33,13 +33,9 @@ public class MedicalCardController {
 
         @PostMapping("/addMedicalCard")
     public ResponseEntity<?> addMedicalCard(@NonNull @RequestBody MedicalCardInput medicalCardInput) {
-        try {
             var medicalCard = medicalCardService.addMedicalCard(medicalCardInput);
             log.info(medicalCard.toString());
             return ResponseEntity.ok(medicalCard);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
     }
 
 }
