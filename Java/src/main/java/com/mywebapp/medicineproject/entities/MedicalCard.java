@@ -71,7 +71,9 @@ public class MedicalCard extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private HealthStatusType healthStatus;
 
-    @OneToMany
-    @JoinColumn(name = "med_card_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "med_cards_drugs",
+            joinColumns = @JoinColumn(name = "med_card_id"),
+            inverseJoinColumns = @JoinColumn(name = "drug_id"))
     private List<Drug> drugs;
 }

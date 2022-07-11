@@ -1,14 +1,12 @@
 package com.mywebapp.medicineproject.controllers;
 
+import com.mywebapp.medicineproject.inputs.MedicalCardInput;
 import com.mywebapp.medicineproject.services.MedicalCardService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/medicalCard")
@@ -32,4 +30,16 @@ public class MedicalCardController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+        @PostMapping("/addMedicalCard")
+    public ResponseEntity<?> addMedicalCard(@NonNull @RequestBody MedicalCardInput medicalCardInput) {
+        try {
+            var medicalCard = medicalCardService.addMedicalCard(medicalCardInput);
+            log.info(medicalCard.toString());
+            return ResponseEntity.ok(medicalCard);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
 }

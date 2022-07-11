@@ -21,4 +21,8 @@ public class MedicalCardRepository {
     public List<MedicalCard> getAllMedicalCards() {
         return dao.getAll(MedicalCard.class);
     }
+
+    public MedicalCard addMedicalCard(MedicalCard medicalCard) {
+        return dao.add(medicalCard);
+    }
 }
