@@ -12,6 +12,7 @@ public class UserInputParser {
                 .birthdate(userInput.getBirthdate())
                 .currentFrom(userInput.getCurrentFrom())
                 .job(JobInputParser.fromInput(userInput.getJob()))
+                .document(DocumentInputParser.fromInputs(userInput.getDocuments()))
                 .build();
         return user;
     }

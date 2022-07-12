@@ -33,7 +33,8 @@ public class UserService {
 
     public User addUser(UserInput userInput) {
         userValidation.validateUser(userInput);
-        return userRepository.addUser(userInput);
+        var user = UserInputParser.fromInput(userInput);
+        return userRepository.addUser(user);
     }
 
     public List<User> findAllUsers() {
