@@ -7,7 +7,6 @@ import com.mywebapp.medicineproject.entities.Job;
 import com.mywebapp.medicineproject.entities.User;
 import com.mywebapp.medicineproject.inputs.UserInput;
 import com.querydsl.jpa.impl.JPAQuery;
-import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
@@ -69,7 +68,7 @@ public class UserRepository {
     }
 
     public List<User> findByFilters(String firstName, String lastName, LocalDate birthday, String currentFrom) {
-        @Cleanup var session = dao.getSession();
+        var session = dao.getSession();
         var predicate = QPredicate.builder()
                 .add(firstName, user.firstName::eq)
                 .add(lastName, user.lastName::eq)
