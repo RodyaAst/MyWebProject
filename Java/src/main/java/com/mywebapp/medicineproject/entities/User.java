@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "documents")
 public class User extends BaseEntity {
 
     @Column(name = "first_name")
