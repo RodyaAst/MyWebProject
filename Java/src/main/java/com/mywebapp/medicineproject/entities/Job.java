@@ -3,9 +3,7 @@ package com.mywebapp.medicineproject.entities;
 import com.mywebapp.medicineproject.base.BaseEntity;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -25,4 +23,7 @@ public class Job extends BaseEntity {
 
     @Column(name = "since")
     private LocalDate since;
+
+    @OneToOne(mappedBy = "job", cascade = CascadeType.ALL)
+    private User user;
 }

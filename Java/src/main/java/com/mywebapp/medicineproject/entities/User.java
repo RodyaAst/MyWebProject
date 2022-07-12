@@ -33,7 +33,7 @@ public class User extends BaseEntity {
     @JoinColumn(name = "job_id")
     private Job job;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user")
     private List<Document> document;
 }
