@@ -1,6 +1,7 @@
 package com.mywebapp.medicineproject.services;
 
 import com.mywebapp.medicineproject.entities.User;
+import com.mywebapp.medicineproject.input_parser.UserInputParser;
 import com.mywebapp.medicineproject.inputs.UserInput;
 import com.mywebapp.medicineproject.repositories.UserRepository;
 import com.mywebapp.medicineproject.validations.UserValidation;
@@ -47,7 +48,9 @@ public class UserService {
         userRepository.deleteUser(id);
     }
 
-    public void updateUser(User user) {
+    public void updateUser(User user, UserInput userInput) {
+        UserInputParser.updateUserFromInput(user, userInput);
         userRepository.updateUser(user);
     }
+
 }

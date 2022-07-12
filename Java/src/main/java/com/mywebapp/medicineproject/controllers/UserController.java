@@ -68,10 +68,11 @@ public class UserController {
     }
 
     @PutMapping("/{id}/update")
-    public ResponseEntity<?> updateUser(@NonNull @PathVariable Long id) {
+    public ResponseEntity<?> updateUser(@NonNull @PathVariable Long id,
+                                        @RequestBody UserInput userInput) {
         try {
             var user = userService.findUser(id);
-            userService.updateUser(user);
+            userService.updateUser(user, userInput);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
