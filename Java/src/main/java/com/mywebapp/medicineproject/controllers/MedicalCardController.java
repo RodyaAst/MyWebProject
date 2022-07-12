@@ -31,11 +31,11 @@ public class MedicalCardController {
         }
     }
 
-        @PostMapping("/addMedicalCard")
+    @PostMapping("/addMedicalCard")
     public ResponseEntity<?> addMedicalCard(@NonNull @RequestBody MedicalCardInput medicalCardInput) {
-            var medicalCard = medicalCardService.addMedicalCard(medicalCardInput);
-            log.info(medicalCard.toString());
-            return ResponseEntity.ok(medicalCard);
+        var medicalCard = medicalCardService.addMedicalCard(medicalCardInput);
+        log.info(medicalCard.toString());
+        return ResponseEntity.ok(medicalCard);
     }
 
 }
