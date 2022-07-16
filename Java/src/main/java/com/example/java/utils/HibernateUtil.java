@@ -1,6 +1,6 @@
 package com.example.java.utils;
 
-import com.example.java.auth.PersonAuth;
+import com.example.java.auth.entity.PersonAuth;
 import com.example.java.entities.*;
 import lombok.experimental.UtilityClass;
 import org.hibernate.SessionFactory;

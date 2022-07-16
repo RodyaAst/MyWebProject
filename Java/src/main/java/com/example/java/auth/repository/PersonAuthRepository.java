@@ -1,6 +1,6 @@
 package com.example.java.auth.repository;
 
-import com.example.java.auth.PersonAuth;
+import com.example.java.auth.entity.PersonAuth;
 import com.example.java.dao.Dao;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
@@ -18,5 +18,9 @@ public class PersonAuthRepository {
 
     public Optional<PersonAuth> findByUsername(@NonNull String username) {
         return dao.getAll(PersonAuth.class).stream().filter(person -> username.equals(person.getUsername())).findFirst();
+    }
+
+    public PersonAuth registerPerson(PersonAuth personAuth) {
+        return dao.add(personAuth);
     }
 }

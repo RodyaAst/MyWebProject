@@ -1,5 +1,6 @@
 package com.example.java.auth;
 
+import com.example.java.auth.entity.PersonAuth;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

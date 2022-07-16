@@ -1,10 +1,7 @@
-package com.example.java.auth;
+package com.example.java.auth.entity;
 
 import com.example.java.base.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +16,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class PersonAuth extends BaseEntity {
 
     @NotEmpty(message = "Имя не может быть пустым")
