@@ -17,6 +17,8 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(Drug.class);
         configuration.addAnnotatedClass(MedicalCard.class);
         configuration.addAnnotatedClass(PersonAuth.class);
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(PersonAdditionalInfo.class);
         configuration.configure();
 
         return configuration.buildSessionFactory();

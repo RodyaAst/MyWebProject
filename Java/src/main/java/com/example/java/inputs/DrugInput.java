@@ -9,7 +9,7 @@ public class DrugInput {
 
     private String name;
 
-    private String dosage;
+    private Double dosage;
 
     private String serialId;
 }

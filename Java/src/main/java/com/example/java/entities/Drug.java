@@ -1,11 +1,10 @@
 package com.example.java.entities;
 
 import com.example.java.base.BaseEntity;
+import com.example.java.types.DosageType;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "drug")
@@ -21,8 +20,15 @@ public class Drug extends BaseEntity {
     private String name;
 
     @Column(name = "drug_dosage")
-    private String dosage;
+    private Double dosage;
 
     @Column(name = "drug_serial_id")
     private String serialId;
+
+    @Column(name = "drug_dosage_name")
+    private String dosageName;
+
+    @Column(name = "drug_dosage_type")
+    @Enumerated(EnumType.STRING)
+    private DosageType drugDosageType;
 }
