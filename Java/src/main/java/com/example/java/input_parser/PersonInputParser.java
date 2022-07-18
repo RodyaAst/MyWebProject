@@ -1,6 +1,7 @@
 package com.example.java.input_parser;
 
 import com.example.java.entities.Person;
+import com.example.java.entities.PersonAdditionalInfo;
 import com.example.java.inputs.PersonInput;
 
 public class PersonInputParser {
@@ -11,6 +12,7 @@ public class PersonInputParser {
                 .bodyWeight(input.getBodyWeight())
                 .creatinine(input.getCreatinine())
                 .sex(input.getSex())
+                .personAdditionalInfo(new PersonAdditionalInfo())
                 .build();
         return person;
     }

@@ -28,7 +28,7 @@ public class Person extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SexType sex;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "person_additional_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_additional_id", nullable = false)
     private PersonAdditionalInfo personAdditionalInfo;
 }
