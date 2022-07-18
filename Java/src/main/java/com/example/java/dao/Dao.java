@@ -57,7 +57,7 @@ public class Dao {
         session.getTransaction().commit();
     }
 
-    private Session getSession() {
+    public Session getSession() {
         return sessionFactory.openSession();
     }
 }

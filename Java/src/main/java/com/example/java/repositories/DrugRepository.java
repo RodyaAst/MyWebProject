@@ -6,7 +6,6 @@ import com.example.java.types.DosageType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class DrugRepository {
@@ -22,14 +21,19 @@ public class DrugRepository {
     }
 
     public List<Drug> getDrugsByName(String name) {
-        //TODO HQL by filters
-        return dao.getAll(Drug.class).stream().filter(drug -> drug.getName().equals(name)).collect(Collectors.toList());
+        var query = dao.getSession().createQuery("from Drug d where d.name = :drugName");
+        query.setParameter("drugName", name);
+        List<Drug> drugs = query.list();
+        return drugs;
     }
 
     public Drug getDrugsByNameAndDosage(String drugName, Double dosage, DosageType dosageType) {
-        //TODO HQL by filters
-        return dao.getAll(Drug.class).stream().filter(drug -> drug.getName().equals(drugName)
-                && drug.getDosage() == dosage
-                && drug.getDrugDosageType() == dosageType).findFirst().orElseThrow();
+        var query = dao.getSession().createQuery("from Drug d where  d.name = :drugName " +
+                "and d.dosage = :dosage and d.drugDosageType = :dosageType");
+        query.setParameter("drugName", drugName)
+                .setParameter("dosage", dosage)
+                .setParameter("dosageType", dosageType);
+        var drug = (Drug) query.getSingleResult();
+        return drug;
     }
 }
