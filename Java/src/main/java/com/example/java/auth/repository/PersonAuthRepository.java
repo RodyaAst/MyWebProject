@@ -1,11 +1,16 @@
 package com.example.java.auth.repository;
 
 import com.example.java.auth.entity.PersonAuth;
+import com.example.java.auth.entity.QPersonAuth;
 import com.example.java.dao.Dao;
+import com.example.java.dao.QPredicate;
+import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+
+import static com.example.java.auth.entity.QPersonAuth.personAuth;
 
 @Repository
 public class PersonAuthRepository {
@@ -17,7 +22,16 @@ public class PersonAuthRepository {
     }
 
     public Optional<PersonAuth> findByUsername(@NonNull String username) {
-        return dao.getAll(PersonAuth.class).stream().filter(person -> username.equals(person.getUsername())).findFirst();
+        var session = dao.getSession();
+        var predicate = QPredicate.builder()
+                .add(username, personAuth.username::eq)
+                .buildAnd();
+        var auth = new JPAQuery<PersonAuth>(session)
+                .select(QPersonAuth.personAuth)
+                .from(QPersonAuth.personAuth)
+                .where(predicate)
+                .fetchOne();
+        return Optional.ofNullable(auth);
     }
 
     public PersonAuth registerPerson(PersonAuth personAuth) {

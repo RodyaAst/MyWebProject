@@ -67,6 +67,8 @@ public class PersonService {
         return GFR;
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////
+
     public Drug isDrugUsable(Long id, String drugName) {
         var person = personRepository.getById(id);
         var drugList = drugRepository.getDrugsByName(drugName);

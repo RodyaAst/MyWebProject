@@ -22,11 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(personAuthService);
     }
 
-    //TODO кастомная страница
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//    }
-
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
