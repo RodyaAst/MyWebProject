@@ -58,6 +58,6 @@ public class Dao {
     }
 
     public Session getSession() {
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 }
