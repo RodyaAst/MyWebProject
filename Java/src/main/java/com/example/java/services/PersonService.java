@@ -7,7 +7,9 @@ import com.example.java.input_parser.PersonInputParser;
 import com.example.java.inputs.PersonInput;
 import com.example.java.repositories.DrugRepository;
 import com.example.java.repositories.PersonRepository;
+import com.example.java.types.DosageType;
 import com.example.java.types.SexType;
+import com.example.java.validations.PersonValidation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +19,14 @@ public class PersonService {
 
     private final PersonRepository personRepository;
     private final DrugRepository drugRepository;
+    private final PersonValidation personValidation;
 
     public PersonService(PersonRepository personRepository,
-                         DrugRepository drugRepository) {
+                         DrugRepository drugRepository,
+                         PersonValidation personValidation) {
         this.personRepository = personRepository;
         this.drugRepository = drugRepository;
+        this.personValidation = personValidation;
     }
 
     public Person getPersonById(Long id) {
@@ -30,6 +35,7 @@ public class PersonService {
 
     public Person createPerson(PersonInput input) {
         var person = PersonInputParser.fromInput(input);
+        personValidation.validatePersonWhenCreating(person);
         addAdditionalInfo(person);
         return personRepository.save(person);
     }
@@ -79,5 +85,27 @@ public class PersonService {
         } else {
             throw new RuntimeException("Нельзя использовать данное лекарство");
         }
+    }
+
+    public Person updatePerson(Long id, PersonInput input) {
+        var person = personRepository.getById(id);
+        PersonInputParser.updateFromInput(person, input);
+        addAdditionalInfo(person);
+        personRepository.updatePerson(person);
+        return person;
+    }
+
+    public void deleteUser(Long id) {
+        var person = personRepository.getById(id);
+        personRepository.deletePerson(person);
+    }
+
+
+    public boolean isDrugAvailable(Long personId, String drugName, Double dosage, DosageType dosageType) {
+        var person = personRepository.getById(personId);
+        var drug = drugRepository.getDrugsByNameAndDosage(drugName, dosage, dosageType);
+
+        //TODO Drug Available Solver
+        return false;
     }
 }

@@ -16,5 +16,4 @@ public class PersonInput {
 
     private SexType sex;
 
-    private PersonAdditionalInfoInput personAdditionalInfoInput;
 }

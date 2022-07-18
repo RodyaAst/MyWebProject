@@ -20,4 +20,12 @@ public class PersonRepository {
     public Person save(Person person) {
         return dao.add(person);
     }
+
+    public void deletePerson(Person person) {
+        dao.delete(person);
+    }
+
+    public void updatePerson(Person person) {
+        dao.update(person);
+    }
 }

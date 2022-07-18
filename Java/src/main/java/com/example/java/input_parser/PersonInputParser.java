@@ -14,4 +14,11 @@ public class PersonInputParser {
                 .build();
         return person;
     }
+
+    public static void updateFromInput(Person person, PersonInput input) {
+        person.setAge(input.getAge());
+        person.setBodyWeight(input.getBodyWeight());
+        person.setCreatinine(input.getCreatinine());
+        person.setSex(input.getSex());
+    }
 }

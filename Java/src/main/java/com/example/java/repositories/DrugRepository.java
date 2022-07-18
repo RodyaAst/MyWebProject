@@ -2,6 +2,7 @@ package com.example.java.repositories;
 
 import com.example.java.dao.Dao;
 import com.example.java.entities.Drug;
+import com.example.java.types.DosageType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +22,14 @@ public class DrugRepository {
     }
 
     public List<Drug> getDrugsByName(String name) {
+        //TODO HQL by filters
         return dao.getAll(Drug.class).stream().filter(drug -> drug.getName().equals(name)).collect(Collectors.toList());
+    }
+
+    public Drug getDrugsByNameAndDosage(String drugName, Double dosage, DosageType dosageType) {
+        //TODO HQL by filters
+        return dao.getAll(Drug.class).stream().filter(drug -> drug.getName().equals(drugName)
+                && drug.getDosage() == dosage
+                && drug.getDrugDosageType() == dosageType).findFirst().orElseThrow();
     }
 }

@@ -2,6 +2,7 @@ package com.example.java.controllers;
 
 import com.example.java.inputs.PersonInput;
 import com.example.java.services.PersonService;
+import com.example.java.types.DosageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
@@ -31,11 +32,32 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
-
-    @GetMapping("/{id}/maxFondaparinuxDose")
-    public ResponseEntity<?> isDrugUsable(@NonNull @PathVariable Long id,
-                                          @NonNull @RequestParam String drugName) {
-        var isDrugUsable = personService.isDrugUsable(id, drugName);
-        return ResponseEntity.ok(isDrugUsable);
+    @PutMapping("/{id}/person")
+    public ResponseEntity<?> updatePerson(@NonNull @PathVariable Long id,
+                                          @NonNull @PathVariable PersonInput input) {
+        var updatedPerson = personService.updatePerson(id, input);
+        return ResponseEntity.ok(updatedPerson);
     }
+
+    @DeleteMapping("/{id}/person")
+    public ResponseEntity<?> deletePerson(@NonNull @PathVariable Long id) {
+        personService.deleteUser(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{personId}/isDrugAvailable")
+    public ResponseEntity<?> isDrugAvailable(@NonNull @PathVariable Long personId,
+                                             @NonNull @RequestParam String drugName,
+                                             @NonNull @RequestParam Double dosage,
+                                             @NonNull @RequestParam DosageType dosageType) {
+        var isAvailable = personService.isDrugAvailable(personId, drugName, dosage, dosageType);
+        return ResponseEntity.ok(isAvailable);
+    }
+
+//    @GetMapping("/{id}/maxFondaparinuxDose")
+//    public ResponseEntity<?> isDrugUsable(@NonNull @PathVariable Long id,
+//                                          @NonNull @RequestParam String drugName) {
+//        var isDrugUsable = personService.isDrugUsable(id, drugName);
+//        return ResponseEntity.ok(isDrugUsable);
+//    }
 }
