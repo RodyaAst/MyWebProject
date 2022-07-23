@@ -21,6 +21,9 @@ public class Person extends BaseEntity {
     @Column(name = "body_weight")
     private Double bodyWeight;
 
+    @Column(name = "length")
+    private Double length;
+
     @Column(name = "creatinine")
     private Double creatinine;
 

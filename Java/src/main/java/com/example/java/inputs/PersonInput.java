@@ -12,6 +12,8 @@ public class PersonInput {
 
     private Double bodyWeight;
 
+    private Double length;
+
     private Double creatinine;
 
     private SexType sex;

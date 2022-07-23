@@ -10,6 +10,7 @@ public class PersonInputParser {
         var person = Person.builder()
                 .age(input.getAge())
                 .bodyWeight(input.getBodyWeight())
+                .length(input.getLength())
                 .creatinine(input.getCreatinine())
                 .sex(input.getSex())
                 .personAdditionalInfo(new PersonAdditionalInfo())

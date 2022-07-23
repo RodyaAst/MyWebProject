@@ -8,6 +8,7 @@ import com.example.java.inputs.PersonInput;
 import com.example.java.repositories.DrugRepository;
 import com.example.java.repositories.PersonRepository;
 import com.example.java.types.DosageType;
+import com.example.java.types.QueteletType;
 import com.example.java.types.SexType;
 import com.example.java.validations.PersonValidation;
 import org.springframework.stereotype.Service;
@@ -40,16 +41,33 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public void addAdditionalInfo(Person person) {
+    private void addAdditionalInfo(Person person) {
         addGFR(person);
+        addReferenceWeight(person);
+        addQueteletIndex(person);
     }
 
-    public void addGFR(Person person) {
+    private void addGFR(Person person) {
         var GFR = getGFR(person);
         person.getPersonAdditionalInfo().setGFR(GFR);
     }
 
-    public Double getGFR(Person person) {
+    private void addReferenceWeight(Person person) {
+        var referenceWeight = getReferenceWeight(person);
+        person.getPersonAdditionalInfo().setReferenceWeight(referenceWeight);
+    }
+
+    private void addQueteletIndex(Person person) {
+        var queteletIndex =  getQueteletIndex(person);
+        person.getPersonAdditionalInfo().setQueteletIndex(queteletIndex);
+    }
+
+    private void addReferencePressure(Person person) {
+        var referencePressure = getReferencePressure(person);
+//        person.getPersonAdditionalInfo().setReferencePressure(referencePressure);
+    }
+
+    private Double getGFR(Person person) {
         Double sexCoefficient;
 
         if (person.getSex() == SexType.MALE) {
@@ -65,6 +83,40 @@ public class PersonService {
                 "Ошибка. GFR должен быть больше нуля.");
 
         return GFR;
+    }
+
+    private Double getReferenceWeight(Person person) {
+        Double sexCoefficient;
+
+        if (person.getSex() == SexType.MALE) {
+            sexCoefficient = 100d;
+        } else {
+            sexCoefficient = 110d;
+        }
+        var length = person.getLength() * 100;
+        return (length - 110d) * 1.15d;
+    }
+
+    private QueteletType getQueteletIndex(Person person) {
+        Double sexCoefficient;
+
+        if (person.getSex() == SexType.MALE) {
+            sexCoefficient = 100d;
+        } else {
+            sexCoefficient = 110d;
+        }
+
+        var weight = person.getBodyWeight() * 1000;
+        var length = person.getLength() * 100d;
+
+        var index = (long)(weight / length);
+
+        return QueteletType.getQueteletTypeByIndexAndSexType(index, person.getSex());
+    }
+
+    private Double getReferencePressure(Person person) {
+        //TODO Расчет идеального давления
+        return null;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
