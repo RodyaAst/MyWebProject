@@ -15,16 +15,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class PersonAdditionalInfo extends BaseEntity {
 
-    @Column(name = "gfr")
-    private Double GFR;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_additional_weight_id")
+    private PersonAdditionalWeight personAdditionalWeight;
 
-    @Column(name = "reference_weight")
-    private Double referenceWeight;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_additional_pressure_id")
+    private PersonAdditionalPressure personAdditionalPressure;
 
-    @Column(name = "reference_pressure")
-    private Long referencePressure;
-
-    @Column(name = "quetelet_index")
-    @Enumerated(EnumType.STRING)
-    private QueteletType queteletIndex;
 }

@@ -7,7 +7,7 @@ public class PersonAdditionalInfoParser {
 
     public static PersonAdditionalInfo fromInput(PersonAdditionalInfoInput input) {
         var personAdditionalInfo = PersonAdditionalInfo.builder()
-                .GFR(input.getGFR())
+//                .GFR(input.getGFR())
                 .build();
         return personAdditionalInfo;
     }

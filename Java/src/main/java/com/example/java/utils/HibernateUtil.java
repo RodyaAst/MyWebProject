@@ -19,6 +19,8 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(PersonAuth.class);
         configuration.addAnnotatedClass(Person.class);
         configuration.addAnnotatedClass(PersonAdditionalInfo.class);
+        configuration.addAnnotatedClass(PersonAdditionalWeight.class);
+        configuration.addAnnotatedClass(PersonAdditionalPressure.class);
         configuration.configure();
 
         return configuration.buildSessionFactory();

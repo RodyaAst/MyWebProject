@@ -45,26 +45,30 @@ public class PersonService {
         addGFR(person);
         addReferenceWeight(person);
         addQueteletIndex(person);
+        addReferencePressure(person);
     }
 
     private void addGFR(Person person) {
         var GFR = getGFR(person);
-        person.getPersonAdditionalInfo().setGFR(GFR);
+        person.getPersonAdditionalInfo().getPersonAdditionalWeight().setGFR(GFR);
     }
 
     private void addReferenceWeight(Person person) {
         var referenceWeight = getReferenceWeight(person);
-        person.getPersonAdditionalInfo().setReferenceWeight(referenceWeight);
+        person.getPersonAdditionalInfo().getPersonAdditionalWeight().setReferenceWeight(referenceWeight);
     }
 
     private void addQueteletIndex(Person person) {
         var queteletIndex =  getQueteletIndex(person);
-        person.getPersonAdditionalInfo().setQueteletIndex(queteletIndex);
+        person.getPersonAdditionalInfo().getPersonAdditionalWeight().setQueteletIndex(queteletIndex);
     }
 
     private void addReferencePressure(Person person) {
-        var referencePressure = getReferencePressure(person);
-//        person.getPersonAdditionalInfo().setReferencePressure(referencePressure);
+        var referencePressureSystolic = getReferencePressureSystolic(person);
+        var referencePressureDiastolic = getReferencePressureDiastolic(person);
+
+        person.getPersonAdditionalInfo().getPersonAdditionalPressure().setReferencePressureSystolic(referencePressureSystolic);
+        person.getPersonAdditionalInfo().getPersonAdditionalPressure().setReferencePressureDiastolic(referencePressureDiastolic);
     }
 
     private Double getGFR(Person person) {
@@ -114,8 +118,15 @@ public class PersonService {
         return QueteletType.getQueteletTypeByIndexAndSexType(index, person.getSex());
     }
 
-    private Double getReferencePressure(Person person) {
+    private Double getReferencePressureSystolic(Person person) {
         //TODO Расчет идеального давления
+
+        return null;
+    }
+
+    private Double getReferencePressureDiastolic(Person person) {
+        //TODO Расчет идеального давления
+
         return null;
     }
 
@@ -125,7 +136,7 @@ public class PersonService {
         var person = personRepository.getById(id);
         var drugList = drugRepository.getDrugsByName(drugName);
 
-        var GFR = person.getPersonAdditionalInfo().getGFR();
+        var GFR = person.getPersonAdditionalInfo().getPersonAdditionalWeight().getGFR();
 
         if (GFR > 0
                 && GFR < 15) {
