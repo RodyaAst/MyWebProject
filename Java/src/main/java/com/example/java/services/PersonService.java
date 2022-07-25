@@ -59,19 +59,17 @@ public class PersonService {
     }
 
     private void addQueteletIndex(Person person) {
-        var queteletIndex =  getQueteletIndex(person);
+        var queteletIndex = getQueteletIndex(person);
         person.getPersonAdditionalInfo().getPersonAdditionalWeight().setQueteletIndex(queteletIndex);
     }
 
     private void addReferencePressure(Person person) {
-        var referencePressureSystolic = getReferencePressureSystolic(person);
-        var referencePressureDiastolic = getReferencePressureDiastolic(person);
+        var referencePressure = getReferencePressure(person);
 
-        person.getPersonAdditionalInfo().getPersonAdditionalPressure().setReferencePressureSystolic(referencePressureSystolic);
-        person.getPersonAdditionalInfo().getPersonAdditionalPressure().setReferencePressureDiastolic(referencePressureDiastolic);
+        person.getPersonAdditionalInfo().getPersonAdditionalPressure().setReferencePressure(referencePressure);
     }
 
-    private Double getGFR(Person person) {
+    private Integer getGFR(Person person) {
         Double sexCoefficient;
 
         if (person.getSex() == SexType.MALE) {
@@ -86,10 +84,10 @@ public class PersonService {
                 "error.GFR.must.be.more.than.zero",
                 "Ошибка. GFR должен быть больше нуля.");
 
-        return GFR;
+        return (int) Math.round(GFR);
     }
 
-    private Double getReferenceWeight(Person person) {
+    private Integer getReferenceWeight(Person person) {
         Double sexCoefficient;
 
         if (person.getSex() == SexType.MALE) {
@@ -98,7 +96,8 @@ public class PersonService {
             sexCoefficient = 110d;
         }
         var length = person.getLength() * 100;
-        return (length - 110d) * 1.15d;
+        var referenceWeight = (length - 110d) * 1.15d;
+        return (int) Math.round(referenceWeight);
     }
 
     private QueteletType getQueteletIndex(Person person) {
@@ -113,22 +112,33 @@ public class PersonService {
         var weight = person.getBodyWeight() * 1000;
         var length = person.getLength() * 100d;
 
-        var index = (long)(weight / length);
+        var index = (long) (weight / length);
 
         return QueteletType.getQueteletTypeByIndexAndSexType(index, person.getSex());
     }
 
-    private Double getReferencePressureSystolic(Person person) {
-        //TODO Расчет идеального давления
+    private String getReferencePressure(Person person) {
+        StringBuilder pressureBuilder = new StringBuilder();
 
-        return null;
+        var pressureSystolic = 1.7 * person.getAge() + 83;
+        var pressureDiastolic = 1.6 * person.getAge() + 42;
+
+        Guard.that(pressureDiastolic > 0
+                        && pressureDiastolic < 250,
+                "error.wrong.systolic.pressure",
+                "Ошибка при расчете систолитического давления. Проверьте корректность входных параметров.");
+
+        Guard.that(pressureSystolic > 0
+                        && pressureSystolic < 200,
+                "error.wrong.systolic.pressure",
+                "Ошибка при расчете диастолитического давления. Проверьте корректность входных параметров.");
+
+        pressureBuilder.append(pressureSystolic)
+                .append("/")
+                .append(pressureDiastolic);
+        return pressureBuilder.toString();
     }
 
-    private Double getReferencePressureDiastolic(Person person) {
-        //TODO Расчет идеального давления
-
-        return null;
-    }
 
     //////////////////////////////////////////////////////////////////////////////////////
 

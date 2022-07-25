@@ -16,10 +16,10 @@ import javax.persistence.*;
 public class PersonAdditionalWeight extends BaseEntity {
 
     @Column(name = "gfr")
-    private Double GFR;
+    private Integer GFR;
 
     @Column(name = "reference_weight")
-    private Double referenceWeight;
+    private Integer referenceWeight;
 
     @Column(name = "quetelet_index")
     @Enumerated(EnumType.STRING)

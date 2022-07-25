@@ -16,9 +16,6 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class PersonAdditionalPressure extends BaseEntity {
 
-    @Column(name = "reference_pressure_systolic")
-    private Double referencePressureSystolic;
-
-    @Column(name = "reference_pressure_diastolic")
-    private Double referencePressureDiastolic;
+    @Column(name = "reference_pressure")
+    private String referencePressure;
 }
