@@ -78,7 +78,8 @@ public class PersonService {
             sexCoefficient = 0.85D;
         }
 
-        Double GFR = ((140 - person.getAge()) * person.getBodyWeight()) / (person.getCreatinine() * 0.81) * sexCoefficient;
+        Double GFR = ((140 - person.getAge()) * person.getPersonBodyInfo().getBodyWeight())
+                / (person.getPersonBodyInfo().getCreatinine() * 0.81) * sexCoefficient;
 
         Guard.that(GFR >= 0,
                 "error.GFR.must.be.more.than.zero",
@@ -95,22 +96,15 @@ public class PersonService {
         } else {
             sexCoefficient = 110d;
         }
-        var length = person.getLength() * 100;
+        var length = person.getPersonBodyInfo().getLength() * 100;
         var referenceWeight = (length - 110d) * 1.15d;
         return (int) Math.round(referenceWeight);
     }
 
     private QueteletType getQueteletIndex(Person person) {
-        Double sexCoefficient;
 
-        if (person.getSex() == SexType.MALE) {
-            sexCoefficient = 100d;
-        } else {
-            sexCoefficient = 110d;
-        }
-
-        var weight = person.getBodyWeight() * 1000;
-        var length = person.getLength() * 100d;
+        var weight = person.getPersonBodyInfo().getBodyWeight() * 1000;
+        var length = person.getPersonBodyInfo().getLength() * 100d;
 
         var index = (long) (weight / length);
 
@@ -119,6 +113,7 @@ public class PersonService {
 
     private String getReferencePressure(Person person) {
         StringBuilder pressureBuilder = new StringBuilder();
+
 
         var pressureSystolic = 1.7 * person.getAge() + 83;
         var pressureDiastolic = 1.6 * person.getAge() + 42;

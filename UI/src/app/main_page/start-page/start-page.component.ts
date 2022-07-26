@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserEntry} from "../../user/UserEntry";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../services/UserService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-start-page',
@@ -23,7 +24,8 @@ export class StartPageComponent implements OnInit {
   public usersByFilters: UserEntry[];
 
   constructor(private http: HttpClient,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
     this.getEmptyFilters();
     this.getUsers();
 

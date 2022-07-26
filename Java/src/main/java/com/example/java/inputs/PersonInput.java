@@ -4,18 +4,34 @@ import com.example.java.types.SexType;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 public class PersonInput {
 
-    private Long age;
+    private String firstName;
 
-    private Double bodyWeight;
+    private String lastName;
 
-    private Double length;
-
-    private Double creatinine;
+    private String patronymic;
 
     private SexType sex;
+
+    private LocalDate birthDate;
+
+    private String currentLive;
+
+    private String passportNumber;
+
+    private String omsCode;
+
+    private String dmsCode;
+
+    private String snils;
+
+    private String job;
+
+    private PersonBodyInfoInput bodyInfoInput;
 
 }
