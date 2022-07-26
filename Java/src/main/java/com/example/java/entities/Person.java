@@ -5,6 +5,8 @@ import com.example.java.types.SexType;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -17,12 +19,15 @@ import java.time.Period;
 @AllArgsConstructor
 public class Person extends BaseEntity {
 
+    @Size(min = 2, max = 20)
     @Column(name = "first_name")
     private String firstName;
 
+    @Size(min = 2, max = 20)
     @Column(name = "last_name")
     private String lastName;
 
+    @Size(min = 2, max = 20)
     @Column(name = "patronymic")
     private String patronymic;
 
@@ -36,6 +41,8 @@ public class Person extends BaseEntity {
     @Column(name = "current_live")
     private String currentLive;
 
+    @NotEmpty
+    @Size(min = 10, max = 10)
     @Column(name = "passport_number")
     private String passportNumber;
 
