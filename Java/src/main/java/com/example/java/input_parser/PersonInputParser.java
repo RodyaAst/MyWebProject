@@ -43,5 +43,8 @@ public class PersonInputParser {
         person.setDMSCode(input.getDmsCode());
         person.setSNILS(input.getSnils());
         person.setJob(input.getJob());
+        person.getPersonBodyInfo().setBodyWeight(input.getBodyInfoInput().getBodyWeight());
+        person.getPersonBodyInfo().setLength(input.getBodyInfoInput().getLength());
+        person.getPersonBodyInfo().setCreatinine(input.getBodyInfoInput().getCreatinine());
     }
 }

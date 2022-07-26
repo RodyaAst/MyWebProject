@@ -54,6 +54,7 @@ public class PersonController {
         return ResponseEntity.ok(isAvailable);
     }
 
+    //TODO solve max drug dose
 //    @GetMapping("/{id}/maxFondaparinuxDose")
 //    public ResponseEntity<?> isDrugUsable(@NonNull @PathVariable Long id,
 //                                          @NonNull @RequestParam String drugName) {

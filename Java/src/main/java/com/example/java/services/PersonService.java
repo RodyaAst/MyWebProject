@@ -97,7 +97,7 @@ public class PersonService {
             sexCoefficient = 110d;
         }
         var length = person.getPersonBodyInfo().getLength() * 100;
-        var referenceWeight = (length - 110d) * 1.15d;
+        var referenceWeight = (length - sexCoefficient) * 1.15d;
         return (int) Math.round(referenceWeight);
     }
 

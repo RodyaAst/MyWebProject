@@ -26,9 +26,6 @@ public class Person extends BaseEntity {
     @Column(name = "patronymic")
     private String patronymic;
 
-    @Transient
-    private Long age;
-
     @Column(name = "sex")
     @Enumerated(EnumType.STRING)
     private SexType sex;
