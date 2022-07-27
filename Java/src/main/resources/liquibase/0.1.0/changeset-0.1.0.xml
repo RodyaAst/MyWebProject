@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.14.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="1658929334779-117" author="Rodya (generated)">
+        <dropTable cascadeConstraints="true" tableName="person_personal_info"/>
+    </changeSet>
+    <changeSet id="1658929334779-1" author="Rodya (generated)">
+        <dropColumn columnName="age" tableName="med_cards"/>
+
+        <dropColumn columnName="card_number" tableName="med_cards"/>
+
+        <dropColumn columnName="sum_days" tableName="med_cards"/>
+
+        <dropColumn columnName="version" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-2" author="Rodya (generated)">
+        <addColumn tableName="med_cards">
+            <column name="age" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-3" author="Rodya (generated)">
+        <dropColumn columnName="birth_year" tableName="person_auth"/>
+
+        <dropColumn columnName="id" tableName="person_auth"/>
+
+        <dropColumn columnName="version" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-4" author="Rodya (generated)">
+        <addColumn tableName="person_auth">
+            <column name="birth_year" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-5" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="birth_year" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-7" author="Rodya (generated)">
+        <addColumn tableName="med_cards">
+            <column name="card_number" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-8" author="Rodya (generated)">
+        <modifyDataType columnName="current_from" newDataType="VARCHAR(255)" tableName="users"/>
+    </changeSet>
+    <changeSet id="1658929334779-9" author="Rodya (generated)">
+        <modifyDataType columnName="current_live" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-10" author="Rodya (generated)">
+        <modifyDataType columnName="current_live" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-11" author="Rodya (generated)">
+        <modifyDataType columnName="data" newDataType="VARCHAR(255)" tableName="documents"/>
+    </changeSet>
+    <changeSet id="1658929334779-12" author="Rodya (generated)">
+        <modifyDataType columnName="department" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-13" author="Rodya (generated)">
+        <modifyDataType columnName="diagnosis" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-14" author="Rodya (generated)">
+        <modifyDataType columnName="dms_code" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-15" author="Rodya (generated)">
+        <modifyDataType columnName="drug_dosage_name" newDataType="VARCHAR(255)" tableName="drug"/>
+    </changeSet>
+    <changeSet id="1658929334779-16" author="Rodya (generated)">
+        <modifyDataType columnName="drug_dosage_type" newDataType="VARCHAR(255)" tableName="drug"/>
+    </changeSet>
+    <changeSet id="1658929334779-17" author="Rodya (generated)">
+        <dropColumn columnName="drug_id" tableName="med_cards_drugs"/>
+
+        <dropColumn columnName="med_card_id" tableName="med_cards_drugs"/>
+    </changeSet>
+    <changeSet id="1658929334779-18" author="Rodya (generated)">
+        <addColumn tableName="med_cards_drugs">
+            <column name="drug_id" type="BIGINT">
+                <constraints foreignKeyName="fk_medcardru_on_drug" nullable="false" references="drug(id)"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-19" author="Rodya (generated)">
+        <modifyDataType columnName="drug_name" newDataType="VARCHAR(255)" tableName="drug"/>
+    </changeSet>
+    <changeSet id="1658929334779-20" author="Rodya (generated)">
+        <modifyDataType columnName="drug_serial_id" newDataType="VARCHAR(255)" tableName="drug"/>
+    </changeSet>
+    <changeSet id="1658929334779-21" author="Rodya (generated)">
+        <modifyDataType columnName="drugs_side_effect" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-22" author="Rodya (generated)">
+        <modifyDataType columnName="first_name" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-23" author="Rodya (generated)">
+        <modifyDataType columnName="first_name" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-24" author="Rodya (generated)">
+        <modifyDataType columnName="first_name" newDataType="VARCHAR(255)" tableName="users"/>
+    </changeSet>
+    <changeSet id="1658929334779-25" author="Rodya (generated)">
+        <dropColumn columnName="gfr" tableName="person_additional_weight"/>
+
+        <dropColumn columnName="id" tableName="person_additional_weight"/>
+
+        <dropColumn columnName="reference_weight" tableName="person_additional_weight"/>
+
+        <dropColumn columnName="version" tableName="person_additional_weight"/>
+    </changeSet>
+    <changeSet id="1658929334779-26" author="Rodya (generated)">
+        <addColumn tableName="person_additional_weight">
+            <column name="gfr" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-27" author="Rodya (generated)">
+        <dropColumn columnName="id" tableName="person"/>
+
+        <dropColumn columnName="person_additional_id" tableName="person"/>
+
+        <dropColumn columnName="person_body_info_id" tableName="person"/>
+
+        <dropColumn columnName="version" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-28" author="Rodya (generated)">
+        <addColumn tableName="person">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person" validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-29" author="Rodya (generated)">
+        <dropColumn columnName="id" tableName="person_additional_info"/>
+
+        <dropColumn columnName="person_additional_pressure_id" tableName="person_additional_info"/>
+
+        <dropColumn columnName="person_additional_weight_id" tableName="person_additional_info"/>
+
+        <dropColumn columnName="version" tableName="person_additional_info"/>
+    </changeSet>
+    <changeSet id="1658929334779-30" author="Rodya (generated)">
+        <addColumn tableName="person_additional_info">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person_additional_info"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-31" author="Rodya (generated)">
+        <dropColumn columnName="id" tableName="person_additional_pressure"/>
+
+        <dropColumn columnName="version" tableName="person_additional_pressure"/>
+    </changeSet>
+    <changeSet id="1658929334779-32" author="Rodya (generated)">
+        <addColumn tableName="person_additional_pressure">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person_additional_pressure"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-34" author="Rodya (generated)">
+        <addColumn tableName="person_additional_weight">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person_additional_weight"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-36" author="Rodya (generated)">
+        <addColumn tableName="person_auth">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person_auth"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-37" author="Rodya (generated)">
+        <dropColumn columnName="id" tableName="person_body_info"/>
+
+        <dropColumn columnName="version" tableName="person_body_info"/>
+    </changeSet>
+    <changeSet id="1658929334779-38" author="Rodya (generated)">
+        <addColumn tableName="person_body_info">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person_body_info"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-39" author="Rodya (generated)">
+        <dropColumn columnName="id" tableName="users"/>
+
+        <dropColumn columnName="job_id" tableName="users"/>
+
+        <dropColumn columnName="version" tableName="users"/>
+    </changeSet>
+    <changeSet id="1658929334779-40" author="Rodya (generated)">
+        <addColumn tableName="users">
+            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users" validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-41" author="Rodya (generated)">
+        <modifyDataType columnName="job" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-43" author="Rodya (generated)">
+        <addColumn tableName="users">
+            <column name="job_id" type="BIGINT">
+                <constraints foreignKeyName="FK_USERS_ON_JOB" references="job(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-44" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="job_id" tableName="users"/>
+    </changeSet>
+    <changeSet id="1658929334779-45" author="Rodya (generated)">
+        <modifyDataType columnName="last_name" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-46" author="Rodya (generated)">
+        <modifyDataType columnName="last_name" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-47" author="Rodya (generated)">
+        <modifyDataType columnName="last_name" newDataType="VARCHAR(255)" tableName="users"/>
+    </changeSet>
+    <changeSet id="1658929334779-49" author="Rodya (generated)">
+        <addColumn tableName="med_cards_drugs">
+            <column name="med_card_id" type="BIGINT">
+                <constraints foreignKeyName="fk_medcardru_on_medical_card" nullable="false" references="med_cards(id)"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-50" author="Rodya (generated)">
+        <modifyDataType columnName="name" newDataType="VARCHAR(255)" tableName="documents"/>
+    </changeSet>
+    <changeSet id="1658929334779-51" author="Rodya (generated)">
+        <modifyDataType columnName="name" newDataType="VARCHAR(255)" tableName="job"/>
+    </changeSet>
+    <changeSet id="1658929334779-52" author="Rodya (generated)">
+        <modifyDataType columnName="oms_code" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-53" author="Rodya (generated)">
+        <modifyDataType columnName="passport_number" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-54" author="Rodya (generated)">
+        <modifyDataType columnName="password" newDataType="VARCHAR(255)" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-55" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="password" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-56" author="Rodya (generated)">
+        <modifyDataType columnName="patronymic" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-57" author="Rodya (generated)">
+        <modifyDataType columnName="patronymic" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-59" author="Rodya (generated)">
+        <addColumn tableName="person">
+            <column name="person_additional_id" type="BIGINT">
+                <constraints foreignKeyName="FK_PERSON_ON_PERSON_ADDITIONAL" nullable="false"
+                             references="person_additional_info(id)" validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-61" author="Rodya (generated)">
+        <addColumn tableName="person_additional_info">
+            <column name="person_additional_pressure_id" type="BIGINT">
+                <constraints foreignKeyName="FK_PERSON_ADDITIONAL_INFO_ON_PERSON_ADDITIONAL_PRESSURE"
+                             references="person_additional_pressure(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-63" author="Rodya (generated)">
+        <addColumn tableName="person_additional_info">
+            <column name="person_additional_weight_id" type="BIGINT">
+                <constraints foreignKeyName="FK_PERSON_ADDITIONAL_INFO_ON_PERSON_ADDITIONAL_WEIGHT"
+                             references="person_additional_weight(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-65" author="Rodya (generated)">
+        <addColumn tableName="person">
+            <column name="person_body_info_id" type="BIGINT">
+                <constraints foreignKeyName="FK_PERSON_ON_PERSON_BODY_INFO" references="person_body_info(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-66" author="Rodya (generated)">
+        <modifyDataType columnName="quetelet_index" newDataType="VARCHAR(255)" tableName="person_additional_weight"/>
+    </changeSet>
+    <changeSet id="1658929334779-67" author="Rodya (generated)">
+        <modifyDataType columnName="reference_pressure" newDataType="VARCHAR(255)"
+                        tableName="person_additional_pressure"/>
+    </changeSet>
+    <changeSet id="1658929334779-69" author="Rodya (generated)">
+        <addColumn tableName="person_additional_weight">
+            <column name="reference_weight" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-70" author="Rodya (generated)">
+        <dropColumn columnName="salary" tableName="job"/>
+
+        <dropColumn columnName="version" tableName="job"/>
+    </changeSet>
+    <changeSet id="1658929334779-71" author="Rodya (generated)">
+        <addColumn tableName="job">
+            <column name="salary" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-72" author="Rodya (generated)">
+        <modifyDataType columnName="sex" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-73" author="Rodya (generated)">
+        <modifyDataType columnName="sex" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-74" author="Rodya (generated)">
+        <modifyDataType columnName="snils" newDataType="VARCHAR(255)" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-75" author="Rodya (generated)">
+        <modifyDataType columnName="status" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-77" author="Rodya (generated)">
+        <addColumn tableName="med_cards">
+            <column name="sum_days" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-78" author="Rodya (generated)">
+        <modifyDataType columnName="transportation_type" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-79" author="Rodya (generated)">
+        <dropColumn columnName="user_id" tableName="documents"/>
+
+        <dropColumn columnName="version" tableName="documents"/>
+    </changeSet>
+    <changeSet id="1658929334779-80" author="Rodya (generated)">
+        <addColumn tableName="documents">
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="FK_DOCUMENTS_ON_USER" nullable="false" references="users(id)"
+                             validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-81" author="Rodya (generated)">
+        <modifyDataType columnName="username" newDataType="VARCHAR(255)" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-82" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="username" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-84" author="Rodya (generated)">
+        <addColumn tableName="documents">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-85" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="documents"/>
+    </changeSet>
+    <changeSet id="1658929334779-86" author="Rodya (generated)">
+        <dropColumn columnName="version" tableName="drug"/>
+    </changeSet>
+    <changeSet id="1658929334779-87" author="Rodya (generated)">
+        <addColumn tableName="drug">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-88" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="drug"/>
+    </changeSet>
+    <changeSet id="1658929334779-90" author="Rodya (generated)">
+        <addColumn tableName="job">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-91" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="job"/>
+    </changeSet>
+    <changeSet id="1658929334779-93" author="Rodya (generated)">
+        <addColumn tableName="med_cards">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-94" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="med_cards"/>
+    </changeSet>
+    <changeSet id="1658929334779-96" author="Rodya (generated)">
+        <addColumn tableName="person">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-97" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="person"/>
+    </changeSet>
+    <changeSet id="1658929334779-99" author="Rodya (generated)">
+        <addColumn tableName="person_additional_info">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-100" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="person_additional_info"/>
+    </changeSet>
+    <changeSet id="1658929334779-102" author="Rodya (generated)">
+        <addColumn tableName="person_additional_pressure">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-103" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="person_additional_pressure"/>
+    </changeSet>
+    <changeSet id="1658929334779-105" author="Rodya (generated)">
+        <addColumn tableName="person_additional_weight">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-106" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="person_additional_weight"/>
+    </changeSet>
+    <changeSet id="1658929334779-108" author="Rodya (generated)">
+        <addColumn tableName="person_auth">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-109" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="person_auth"/>
+    </changeSet>
+    <changeSet id="1658929334779-111" author="Rodya (generated)">
+        <addColumn tableName="person_body_info">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-112" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="person_body_info"/>
+    </changeSet>
+    <changeSet id="1658929334779-114" author="Rodya (generated)">
+        <addColumn tableName="users">
+            <column name="version" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1658929334779-115" author="Rodya (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="version" tableName="users"/>
+    </changeSet>
+    <changeSet id="1658929334779-116" author="Rodya (generated)">
+        <modifyDataType columnName="ward" newDataType="VARCHAR(255)" tableName="med_cards"/>
+    </changeSet>
+
+</databaseChangeLog>
