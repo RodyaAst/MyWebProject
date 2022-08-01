@@ -8,72 +8,45 @@
 
     <changeSet id="1" author="Rodya">
         <createTable tableName="person">
-            <column name="id" remarks="Идентификатор сущности"
-                    type="java.sql.Types.BIGINT"
+            <column name="id" remarks="Идентификатор сущности" type="java.sql.Types.BIGINT"
                     autoIncrement="true">
-                <constraints primaryKey="true"
-                             primaryKeyName="pk_person"/>
+                <constraints primaryKey="true" primaryKeyName="pk_person"/>
             </column>
-            <column name="version" remarks="Версия сущности"
-                    type="java.sql.Types.INTEGER"
+            <column name="version" remarks="Версия сущности" type="java.sql.Types.INTEGER"
                     defaultValue="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="first_name"
-                    remarks="Имя пациента"
-                    type="java.lang.String">
+            <column name="first_name" remarks="Имя пациента" type="java.lang.String">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_name" remarks="Фамилия пациента"
-                    type="java.lang.String">
+            <column name="last_name" remarks="Фамилия пациента" type="java.lang.String">
                 <constraints nullable="false"/>
             </column>
-            <column name="patronymic"
-                    remarks="Отчество пациента"
-                    type="java.lang.String"/>
-            <column name="birthdate"
-                    remarks="День рождения пациента"
-                    type="java.sql.Types.DATE">
+            <column name="patronymic" remarks="Отчество пациента" type="java.lang.String"/>
+            <column name="birthdate" remarks="День рождения пациента" type="java.sql.Types.DATE">
                 <constraints nullable="false"/>
             </column>
-            <column name="sex"
-                    remarks="Пол пациента"
-                    type="java.lang.String">
+            <column name="sex" remarks="Пол пациента" type="java.lang.String">
                 <constraints nullable="false"/>
             </column>
-            <column name="current_live"
-                    remarks="Где проживает пациент"
-                    type="java.lang.String"/>
-            <column name="passport_number"
-                    remarks="Серия и номер паспорта"
-                    type="java.lang.String">
+            <column name="current_live" remarks="Где проживает пациент" type="java.lang.String"/>
+            <column name="passport_number" remarks="Серия и номер паспорта" type="java.lang.String">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="oms_code"
-                    remarks="Код полиса ОМС"
-                    type="java.lang.String"/>
-            <column name="dms_code"
-                    remarks="Код полиса ДМС"
-                    type="java.lang.String"/>
-            <column name="snils"
-                    remarks="Номер полиса СНИЛС"
-                    type="java.lang.String"/>
-            <column name="job"
-                    remarks="Место работы пациента"
-                    type="java.lang.String"/>
+            <column name="oms_code" remarks="Код полиса ОМС" type="java.lang.String"/>
+            <column name="dms_code" remarks="Код полиса ДМС" type="java.lang.String"/>
+            <column name="snils" remarks="Номер полиса СНИЛС" type="java.lang.String"/>
+            <column name="job" remarks="Место работы пациента" type="java.lang.String"/>
         </createTable>
     </changeSet>
 
     <changeSet id="2" author="Rodya">
         <createTable tableName="person_additional_info">
-            <column name="id" remarks="Идентификатор сущности"
-                    type="java.sql.Types.BIGINT"
+            <column name="id" remarks="Идентификатор сущности" type="java.sql.Types.BIGINT"
                     autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_person_additional_info"/>
             </column>
-            <column name="version"
-                    remarks="Версия сущности"
-                    type="java.sql.Types.INTEGER"
+            <column name="version" remarks="Версия сущности" type="java.sql.Types.INTEGER"
                     defaultValue="0">
                 <constraints nullable="false"/>
             </column>
@@ -82,38 +55,28 @@
 
     <changeSet id="3" author="Rodya">
         <createTable tableName="person_body_info">
-            <column name="id"
-                    remarks="Идентификатор сущности"
-                    type="java.sql.Types.BIGINT"
+            <column name="id" remarks="Идентификатор сущности" type="java.sql.Types.BIGINT"
                     autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_person_body_info"/>
             </column>
-            <column name="version"
-                    remarks="Версия сущности"
-                    type="java.sql.Types.INTEGER"
+            <column name="version" remarks="Версия сущности" type="java.sql.Types.INTEGER"
                     defaultValue="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="body_weight"
-                    remarks="Вес пациента"
-                    type="java.sql.Types.FLOAT">
+            <column name="body_weight" remarks="Вес пациента" type="java.sql.Types.FLOAT">
                 <constraints nullable="false"/>
             </column>
-            <column name="length"
-                    remarks="Рост пациента, м"
-                    type="java.sql.Types.FLOAT">
+            <column name="length" remarks="Рост пациента, м" type="java.sql.Types.FLOAT">
                 <constraints nullable="false"/>
             </column>
-            <column name="creatinine"
-                    remarks="Показатель креатинина пациента"
+            <column name="creatinine" remarks="Показатель креатинина пациента"
                     type="java.sql.Types.FLOAT"/>
         </createTable>
     </changeSet>
 
     <changeSet id="4" author="Rodya">
         <addColumn tableName="person">
-            <column name="person_body_info_id"
-                    remarks="Дополнительная информация о теле пациенте"
+            <column name="person_body_info_id" remarks="Дополнительная информация о теле пациенте"
                     type="java.sql.Types.INTEGER">
                 <constraints foreignKeyName="fk_person_body_id"
                              referencedTableName="person_body_info"
@@ -124,8 +87,7 @@
 
     <changeSet id="5" author="Rodya">
         <addColumn tableName="person">
-            <column name="person_additional_id"
-                    remarks="Дополнительная рассчитываемая информация о пациенте"
+            <column name="person_additional_id" remarks="Дополнительная рассчитываемая информация о пациенте"
                     type="java.sql.Types.INTEGER">
                 <constraints foreignKeyName="fk_person_additional_info"
                              referencedTableName="person_additional_info"
