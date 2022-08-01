@@ -75,6 +75,40 @@
     </changeSet>
 
     <changeSet id="4" author="Rodya">
+        <createTable tableName="person_additional_pressure">
+            <column name="id" remarks="Идентификатор сущности" type="java.sql.Types.BIGINT"
+                    autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_additional_pressure"/>
+            </column>
+            <column name="version" remarks="Версия сущности" type="java.sql.Types.INTEGER"
+                    defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reference_pressure" remarks="Идеальное давление (расчетно)"
+                    type="java.lang.String"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="">
+        <createTable tableName="person_additional_weight">
+            <column name="id" remarks="Идентификатор сущности" type="java.sql.Types.BIGINT"
+                    autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_additional_weight"/>
+            </column>
+            <column name="version" remarks="Версия сущности" type="java.sql.Types.INTEGER"
+                    defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gfr" remarks="Индекс массы тела"
+                    type="java.sql.Types.FLOAT"/>
+            <column name="reference_weight" remarks="Идеальный вес"
+                    type="java.sql.Types.FLOAT"/>
+            <column name="quetelet_index" remarks="Индекс Кетле"
+                    type="java.lang.String"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="Rodya">
         <addColumn tableName="person">
             <column name="person_body_info_id" remarks="Дополнительная информация о теле пациенте"
                     type="java.sql.Types.INTEGER">
@@ -85,7 +119,7 @@
         </addColumn>
     </changeSet>
 
-    <changeSet id="5" author="Rodya">
+    <changeSet id="7" author="Rodya">
         <addColumn tableName="person">
             <column name="person_additional_id" remarks="Дополнительная рассчитываемая информация о пациенте"
                     type="java.sql.Types.INTEGER">
@@ -95,4 +129,26 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="8" author="Rodya">
+        <addColumn tableName="person_additional_info">
+            <column name="person_additional_pressure_id"
+                    remarks="Дополнительный данные по давлению"
+                    type="java.sql.Types.INTEGER">
+                <constraints foreignKeyName="fk_additional_pressure"
+                             referencedTableName="person_additional_pressure"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="person_additional_info">
+            <column name="person_additional_weight_id"
+                    remarks="Дополнительный данные по весу"
+                    type="java.sql.Types.INTEGER">
+                <constraints foreignKeyName="fk_person_additional_weight"
+                             referencedTableName="person_additional_weight"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
