@@ -11,7 +11,6 @@ import com.example.java.types.DosageType;
 import com.example.java.types.QueteletType;
 import com.example.java.types.SexType;
 import com.example.java.validations.PersonValidation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
