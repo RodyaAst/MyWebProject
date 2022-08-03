@@ -9,7 +9,6 @@ import com.example.java.repositories.DrugRepository;
 import com.example.java.repositories.PersonRepository;
 import com.example.java.types.DosageType;
 import com.example.java.types.QueteletType;
-import com.example.java.types.SexType;
 import com.example.java.validations.PersonValidation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,10 +71,15 @@ public class PersonService {
     private Integer getGFR(Person person) {
         Double sexCoefficient;
 
-        if (person.getSex() == SexType.MALE) {
-            sexCoefficient = 1D;
-        } else {
-            sexCoefficient = 0.85D;
+        switch (person.getSex()) {
+            case MALE:
+                sexCoefficient = 1D;
+                break;
+            case FEMALE:
+                sexCoefficient = 0.85D;
+                break;
+            default:
+                throw new RuntimeException("Не указан пол пациента.");
         }
 
         Double GFR = ((140 - person.getAge()) * person.getPersonBodyInfo().getBodyWeight())
@@ -91,11 +95,17 @@ public class PersonService {
     private Integer getReferenceWeight(Person person) {
         Double sexCoefficient;
 
-        if (person.getSex() == SexType.MALE) {
-            sexCoefficient = 100d;
-        } else {
-            sexCoefficient = 110d;
+        switch (person.getSex()) {
+            case MALE:
+                sexCoefficient = 100D;
+                break;
+            case FEMALE:
+                sexCoefficient = 110D;
+                break;
+            default:
+                throw new RuntimeException("Не указан пол пациента.");
         }
+
         var length = person.getPersonBodyInfo().getLength() * 100;
         var referenceWeight = (length - sexCoefficient) * 1.15d;
         return (int) Math.round(referenceWeight);
