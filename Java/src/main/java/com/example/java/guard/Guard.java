@@ -7,4 +7,8 @@ public abstract class Guard {
             throw new GuardException(code, message);
         }
     }
+
+    public static void error(String code, String message) {
+        throw new GuardException(code, message);
+    }
 }

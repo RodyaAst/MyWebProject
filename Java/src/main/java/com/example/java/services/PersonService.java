@@ -69,7 +69,7 @@ public class PersonService {
     }
 
     private Integer getGFR(Person person) {
-        Double sexCoefficient;
+        Double sexCoefficient = null;
 
         switch (person.getSex()) {
             case MALE:
@@ -79,7 +79,7 @@ public class PersonService {
                 sexCoefficient = 0.85D;
                 break;
             default:
-                throw new RuntimeException("Не указан пол пациента.");
+                Guard.error("error.no.sex", "Не указан пол пациента.");
         }
 
         Double GFR = ((140 - person.getAge()) * person.getPersonBodyInfo().getBodyWeight())
@@ -93,7 +93,7 @@ public class PersonService {
     }
 
     private Integer getReferenceWeight(Person person) {
-        Double sexCoefficient;
+        Double sexCoefficient = null;
 
         switch (person.getSex()) {
             case MALE:
@@ -103,7 +103,7 @@ public class PersonService {
                 sexCoefficient = 110D;
                 break;
             default:
-                throw new RuntimeException("Не указан пол пациента.");
+                Guard.error("error.no.sex", "не указан пол пациента.");
         }
 
         var length = person.getPersonBodyInfo().getLength() * 100;
@@ -155,7 +155,7 @@ public class PersonService {
 
         if (GFR > 0
                 && GFR < 15) {
-            throw new RuntimeException("Нельзя использовать данное лекарство");
+            Guard.error("error.cannot.user.this.drug", "Нельзя использовать данное лекарство.");
         } else if (GFR >= 15
                 && GFR < 30) {
             return drugList.stream().filter(drug -> drug.getDosage() == 1.25D).findFirst().orElseThrow();
@@ -163,8 +163,9 @@ public class PersonService {
                 && GFR <= 90) {
             return drugList.stream().filter(drug -> drug.getDosage() == 2.5D).findFirst().orElseThrow();
         } else {
-            throw new RuntimeException("Нельзя использовать данное лекарство");
+            Guard.error("error.cannot.user.this.drug", "Нельзя использовать данное лекарство.");
         }
+        return null;
     }
 
     public Person updatePerson(Long id, PersonInput input) {
