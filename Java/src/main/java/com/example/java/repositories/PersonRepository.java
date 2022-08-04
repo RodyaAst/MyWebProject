@@ -4,6 +4,8 @@ import com.example.java.dao.Dao;
 import com.example.java.entities.Person;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PersonRepository {
 
@@ -15,6 +17,10 @@ public class PersonRepository {
 
     public Person getById(Long id) {
         return dao.findById(Person.class, id).orElseThrow();
+    }
+
+    public List<Person> getAllPersons() {
+        return dao.getAll(Person.class);
     }
 
     public Person save(Person person) {

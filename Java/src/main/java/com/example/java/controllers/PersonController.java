@@ -26,6 +26,12 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
+    @GetMapping("/person")
+    public ResponseEntity<?> getAllPersons() {
+        var persons = personService.getAllPersons();
+        return ResponseEntity.ok(persons);
+    }
+
     @PostMapping("/person")
     public ResponseEntity<?> createPerson(@NonNull @RequestBody PersonInput input) {
         var person = personService.createPerson(input);

@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,47 +16,35 @@ public class Dao {
 
     private final SessionFactory sessionFactory;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public Dao() {
         this.sessionFactory = HibernateUtil.buildSessionFactory();
     }
 
     public <T extends BaseEntity> List<T> getAll(Class<T> clazz) {
-        var session = getSession();
-        session.beginTransaction();
-        var entityList = session.createCriteria(clazz).list();
-        session.getTransaction().commit();
+        var entityList = entityManager.createQuery("from " + clazz.getName()).getResultList();
         return entityList;
     }
 
     public <T extends BaseEntity> Optional<T> findById(Class<T> clazz, Long id) {
-        var session = getSession();
-        session.beginTransaction();
-        var maybeEntity = Optional.ofNullable(session.find(clazz, id));
-        session.getTransaction().commit();
+        var maybeEntity = Optional.ofNullable(entityManager.find(clazz, id));
         return maybeEntity;
     }
 
     public <T extends BaseEntity> T add(T entity) {
-        var session = getSession();
-        session.beginTransaction();
-        session.save(entity);
-        session.getTransaction().commit();
+        entityManager.persist(entity);
         return entity;
     }
 
     public <T extends BaseEntity> void update(T entity) {
-        var session = getSession();
-        session.beginTransaction();
-        session.merge(entity);
-        session.getTransaction().commit();
+        entityManager.merge(entity);
     }
 
     public <E extends BaseEntity> void delete(E entity) {
-        var session = getSession();
-        session.beginTransaction();
-        session.delete(entity);
-        session.flush();
-        session.getTransaction().commit();
+        entityManager.remove(entity);
+        entityManager.flush();;
     }
 
     public Session getSession() {

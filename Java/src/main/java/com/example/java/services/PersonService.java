@@ -13,6 +13,8 @@ import com.example.java.validations.PersonValidation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class PersonService {
@@ -31,6 +33,10 @@ public class PersonService {
 
     public Person getPersonById(Long id) {
         return personRepository.getById(id);
+    }
+
+    public List<Person> getAllPersons() {
+        return personRepository.getAllPersons();
     }
 
     public Person createPerson(PersonInput input) {
