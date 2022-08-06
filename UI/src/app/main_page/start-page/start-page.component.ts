@@ -24,8 +24,7 @@ export class StartPageComponent implements OnInit {
   public usersByFilters: UserEntry[];
 
   constructor(private http: HttpClient,
-              private userService: UserService,
-              private router: Router) {
+              private userService: UserService) {
     this.getEmptyFilters();
     this.getUsers();
 

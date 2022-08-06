@@ -163,15 +163,10 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.14.0</version>
                 <configuration>
-<!--                    <propertyFile>liquibase/liquibase.properties</propertyFile>-->
-<!--                    <changeLogFile>liquibase/changelog-master.xml</changeLogFile>-->
-<!--                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>-->
-<!--                    <verbose>true</verbose>-->
                     <changeLogFile>liquibase/changelog-master.xml</changeLogFile>
                     <url>jdbc:postgresql://localhost:5432/postgres</url>
                     <username>postgres</username>
                     <password>zxc123</password>
-<!--                    <propertyFile>liquibase.properties</propertyFile>-->
                 </configuration>
             </plugin>
         </plugins>
