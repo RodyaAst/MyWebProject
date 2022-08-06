@@ -3,6 +3,8 @@ import {UserEntry} from "../../user/UserEntry";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../services/UserService";
 import {Router} from "@angular/router";
+import {PersonEntry} from "../../Entries/PersonEntry";
+import {PersonService} from "../../services/PersonService";
 
 @Component({
   selector: 'app-start-page',
@@ -22,12 +24,14 @@ export class StartPageComponent implements OnInit {
   public filter: any = {}
   // @ts-ignore
   public usersByFilters: UserEntry[];
+  public personList: PersonEntry[] = [];
 
   constructor(private http: HttpClient,
-              private userService: UserService) {
+              private userService: UserService,
+              private personService: PersonService) {
     this.getEmptyFilters();
     this.getUsers();
-
+    this.getPersons();
   }
 
   ngOnInit(): void {
@@ -42,7 +46,12 @@ export class StartPageComponent implements OnInit {
 
   private getUsers() {
     this.userService.getUsers()
-      .subscribe(result => this.userList = result)
+      .subscribe(result => this.userList = result);
+  }
+
+  private getPersons() {
+    this.personService.getPersons()
+      .subscribe(result => this.personList = result);
   }
 
 

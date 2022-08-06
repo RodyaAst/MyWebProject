@@ -1,7 +1,7 @@
 import {HttpClient} from "@angular/common/http";
 import {UserEntry} from "../user/UserEntry";
 import {Injectable} from "@angular/core";
-import {delay, Observable} from "rxjs";
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
