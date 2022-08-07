@@ -1,3 +1,5 @@
+import {PersonBodyInfoEntry} from "../services/PersonBodyInfoEntry";
+
 export interface PersonEntry {
   id?: Number;
   firstName?: String;
@@ -11,4 +13,5 @@ export interface PersonEntry {
   snils?: String;
   job?: String;
   sex?: String;
+  personBodyInfo?: PersonBodyInfoEntry;
 }

@@ -4,201 +4,75 @@
   </div>
   <div>
     <div class="form">
-      <input id="firstName" type="text" [(ngModel)]="newUser.firstName" required/>
-      <label for="firstName">Введите имя</label>
+      <input id="firstName" type="text" [(ngModel)]="person.firstName" required/>
+      <label for="firstName">Имя</label>
     </div>
     <div class="form">
-      <input id="lastName" type="text" [(ngModel)]="newUser.lastName" required/>
-      <label for="lastName">Введите фамилию</label>
+      <input id="lastName" type="text" [(ngModel)]="person.lastName" required/>
+      <label for="lastName">Фамилия</label>
     </div>
     <div class="form">
-      <input id="birthDate" type="date" [(ngModel)]="newUser.birthdate" required/>
-      <label for="birthDate">Введите дату рождения</label>
+      <input id="patronymic" type="text" [(ngModel)]="person.patronymic" required/>
+      <label for="patronymic">Отчество</label>
     </div>
     <div class="form">
-      <input id="currentFrom" type="text" [(ngModel)]="newUser.currentFrom" required/>
-      <label for="currentFrom">Откуда вы</label>
+      <input id="birthdate" type="date" [(ngModel)]="person.birthDate" required/>
+      <label for="birthdate">Дату рождения</label>
     </div>
+    <div class="form">
+      <input id="currentLive" type="text" [(ngModel)]="person.currentLive" required/>
+      <label for="currentLive">Место жительства</label>
+    </div>
+    <div class="form">
+      <input id="passportNumber" type="text" [(ngModel)]="person.passportNumber" required/>
+      <label for="passportNumber">Серия и номер паспорта</label>
+    </div>
+    <div class="form">
+      <input id="omsCode" type="text" [(ngModel)]="person.omsCode" required/>
+      <label for="omsCode">Код полиса ОМС</label>
+    </div>
+    <div class="form">
+      <input id="dmsCode" type="text" [(ngModel)]="person.dmsCode" required/>
+      <label for="dmsCode">Код полиса ДМС</label>
+    </div>
+    <div class="form">
+      <input id="snils" type="text" [(ngModel)]="person.snils" required/>
+      <label for="snils">Код полиса СНИЛС</label>
+    </div>
+    <div class="form">
+      <input id="job" type="text" [(ngModel)]="person.job" required/>
+      <label for="job">Место работы</label>
+    </div>
+    <div class="form">
+      <form id="sexForm">
+        <input id="sexMale" name="sex" type="radio" [(ngModel)]="person.sex" value="MALE"/>
+        <label for="sexMale">Муж</label>
+        <input id="sexFemale" name="sex" type="radio" [(ngModel)]="person.sex" value="FEMALE"/>
+        <label for="sexFemale">Жен</label>
+      </form>
+    </div>
+<!--    <div>-->
+<!--      <p>Дополнительная информация о пациенте</p>-->
+<!--    </div>-->
+<!--    <div class="form">-->
+<!--      <input id="bodyWeight" type="text" [(ngModel)]="person.personBodyInfo?.bodyWeight" required/>-->
+<!--      <label for="bodyWeight">Вес</label>-->
+<!--    </div>-->
+<!--    <div class="form">-->
+<!--      <input id="length" type="text" [(ngModel)]="person.personBodyInfo?.length" required/>-->
+<!--      <label for="length">Рост, м</label>-->
+<!--    </div>-->
+<!--    <div class="form">-->
+<!--      <input id="creatinine" type="text" [(ngModel)]="person.personBodyInfo?.creatinine" required/>-->
+<!--      <label for="creatinine">Уровень креатинина</label>-->
+<!--    </div>-->
     <div>
       <button type="submit" (click)="confirmForm()">Подтвердить</button>
     </div>
-    <div>
-      <p>При наличии, укажите ваше место работы</p>
-    </div>
-<!--        <div class="form">-->
-<!--          <input id="jobName" type="text" [(ngModel)]="newUser.job.name"/>-->
-<!--          <label for="jobName">Названия компании</label>-->
-<!--        </div>-->
-    <!--    <div class="form">-->
-    <!--      <input id="jobSalary" type="number" [(ngModel)]="newUser.job.salary"/>-->
-    <!--      <label for="jobName">зароботная плата</label>-->
-    <!--    </div>-->
-    <!--    <div class="form">-->
-    <!--      <input id="jobSince" type="date" [(ngModel)]="newUser.job.since"/>-->
-    <!--      <label for="jobSince">С какого числа работаете</label>-->
-    <!--    </div>-->
   </div>
   <div style="margin-top: 20px">
-    <div>
-      <input id="deleteJobless" type="checkbox" [ngModel]="isDeleteJobLess"/>
-      <label for="deleteJobless">Скрыть безработных</label>
-    </div>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>
-          First Name
-        </th>
-        <th>
-          Last Name
-        </th>
-        <th>
-          Birthdate
-        </th>
-        <th>
-          Current from
-        </th>
-        <th>
-          Job name
-        </th>
-        <th>
-          Salary
-        </th>
-        <th>
-          Since
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let u of userList">
-        <td>
-          {{u.firstName}}
-        </td>
-        <td>
-          {{u.lastName}}
-        </td>
-        <td>
-          {{u.birthdate}}
-        </td>
-        <td>
-          {{u.currentFrom}}
-        </td>
-        <td>
-          {{u.job?.name}}
-        </td>
-        <td>
-          {{u.job?.salary}}
-        </td>
-        <td>
-          {{u.job?.since}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
 
-  <div style="margin-top: 20px">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>
-          First Name
-        </th>
-        <th>
-          Last Name
-        </th>
-        <th>
-          Patronymic
-        </th>
-        <th>
-          Birthdate
-        </th>
-        <th>
-          Current live
-        </th>
-        <th>
-          Passport number
-        </th>
-        <th>
-          OMS Code
-        </th>
-        <th>
-          DMS Code
-        </th>
-        <th>
-          SNILS
-        </th>
-        <th>
-          Job
-        </th>
-        <th>
-          Sex
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let u of personList">
-        <td>
-          {{u.firstName}}
-        </td>
-        <td>
-          {{u.lastName}}
-        </td>
-        <td>
-          {{u.patronymic}}
-        </td>
-        <td>
-          {{u.birthDate}}
-        </td>
-        <td>
-          {{u.currentLive}}
-        </td>
-        <td>
-          {{u.passportNumber}}
-        </td>
-        <td>
-          {{u.omsCode}}
-        </td>
-        <td>
-          {{u.dmsCode}}
-        </td>
-        <td>
-          {{u.snils}}
-        </td>
-        <td>
-          {{u.job}}
-        </td>
-        <td>
-          {{u.sex}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <div>
-      <p>Блок поиска по фильтрам</p>
-      <div>
-        <input id="fir" type="text" [(ngModel)]="filter.firstName"/>
-        <label for="fir">Имя</label>
-      </div>
-      <div>
-        <input id="last" type="text" [(ngModel)]="filter.lastName"/>
-        <label for="last">Фамилия</label>
-      </div>
-      <div>
-        <input id="date" type="date" [(ngModel)]="filter.birthday"/>
-        <label for="date">Дата рождения</label>
-      </div>
-      <div>
-        <input id="cur" type="text" [(ngModel)]="filter.currentFrom"/>
-        <label for="cur">Откуда</label>
-      </div>
-      <div>
-        <button type="submit" (click)="getUsersByFilters()">Поиск</button>
-      </div>
-    </div>
-    <div [hidden]="!usersByFilters">
+    <div style="margin-top: 20px">
       <table class="table">
         <thead>
         <tr>
@@ -209,24 +83,36 @@
             Last Name
           </th>
           <th>
+            Patronymic
+          </th>
+          <th>
             Birthdate
           </th>
           <th>
-            Current from
+            Current live
           </th>
           <th>
-            Job name
+            Passport number
           </th>
           <th>
-            Salary
+            OMS Code
           </th>
           <th>
-            Since
+            DMS Code
+          </th>
+          <th>
+            SNILS
+          </th>
+          <th>
+            Job
+          </th>
+          <th>
+            Sex
           </th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let u of usersByFilters">
+        <tr *ngFor="let u of personList">
           <td>
             {{u.firstName}}
           </td>
@@ -234,23 +120,113 @@
             {{u.lastName}}
           </td>
           <td>
-            {{u.birthdate}}
+            {{u.patronymic}}
           </td>
           <td>
-            {{u.currentFrom}}
+            {{u.birthDate}}
           </td>
           <td>
-            {{u.job?.name}}
+            {{u.currentLive}}
           </td>
           <td>
-            {{u.job?.salary}}
+            {{u.passportNumber}}
           </td>
           <td>
-            {{u.job?.since}}
+            {{u.omsCode}}
+          </td>
+          <td>
+            {{u.dmsCode}}
+          </td>
+          <td>
+            {{u.snils}}
+          </td>
+          <td>
+            {{u.job}}
+          </td>
+          <td>
+            {{u.sex}}
           </td>
         </tr>
         </tbody>
       </table>
+    </div>
+    <div>
+      <div>
+        <p>Блок поиска по фильтрам</p>
+        <div>
+          <input id="fir" type="text" [(ngModel)]="filter.firstName"/>
+          <label for="fir">Имя</label>
+        </div>
+        <div>
+          <input id="last" type="text" [(ngModel)]="filter.lastName"/>
+          <label for="last">Фамилия</label>
+        </div>
+        <div>
+          <input id="date" type="date" [(ngModel)]="filter.birthday"/>
+          <label for="date">Дата рождения</label>
+        </div>
+        <div>
+          <input id="cur" type="text" [(ngModel)]="filter.currentFrom"/>
+          <label for="cur">Откуда</label>
+        </div>
+        <div>
+          <button type="submit" (click)="getUsersByFilters()">Поиск</button>
+        </div>
+      </div>
+      <div [hidden]="!usersByFilters">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>
+              First Name
+            </th>
+            <th>
+              Last Name
+            </th>
+            <th>
+              Birthdate
+            </th>
+            <th>
+              Current from
+            </th>
+            <th>
+              Job name
+            </th>
+            <th>
+              Salary
+            </th>
+            <th>
+              Since
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let u of usersByFilters">
+            <td>
+              {{u.firstName}}
+            </td>
+            <td>
+              {{u.lastName}}
+            </td>
+            <td>
+              {{u.birthdate}}
+            </td>
+            <td>
+              {{u.currentFrom}}
+            </td>
+            <td>
+              {{u.job?.name}}
+            </td>
+            <td>
+              {{u.job?.salary}}
+            </td>
+            <td>
+              {{u.job?.since}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -14,4 +14,8 @@ export class PersonService {
   public getPersons(): Observable<PersonEntry[]> {
     return this.$http.get<PersonEntry[]>(this.URL_BASE + "/person");
   }
+
+  public addPerson(person: PersonEntry): Observable<String>{
+    return this.$http.post<String>(this.URL_BASE + "/person", person);
+  }
 }

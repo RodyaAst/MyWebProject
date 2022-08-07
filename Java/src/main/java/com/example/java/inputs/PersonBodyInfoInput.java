@@ -7,8 +7,6 @@ import lombok.Setter;
 @Setter
 public class PersonBodyInfoInput {
 
-    private Long age;
-
     private Double bodyWeight;
 
     private Double length;

@@ -24,13 +24,11 @@ public class Dao {
     }
 
     public <T extends BaseEntity> List<T> getAll(Class<T> clazz) {
-        var entityList = entityManager.createQuery("from " + clazz.getName()).getResultList();
-        return entityList;
+        return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
     public <T extends BaseEntity> Optional<T> findById(Class<T> clazz, Long id) {
-        var maybeEntity = Optional.ofNullable(entityManager.find(clazz, id));
-        return maybeEntity;
+        return Optional.ofNullable(entityManager.find(clazz, id));
     }
 
     public <T extends BaseEntity> T add(T entity) {

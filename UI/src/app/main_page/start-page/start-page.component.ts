@@ -24,13 +24,14 @@ export class StartPageComponent implements OnInit {
   public filter: any = {}
   // @ts-ignore
   public usersByFilters: UserEntry[];
+
   public personList: PersonEntry[] = [];
+  public person: PersonEntry = {};
 
   constructor(private http: HttpClient,
               private userService: UserService,
               private personService: PersonService) {
     this.getEmptyFilters();
-    this.getUsers();
     this.getPersons();
   }
 
@@ -38,9 +39,9 @@ export class StartPageComponent implements OnInit {
   }
 
   public confirmForm(): void {
-    this.userService.addUser(this.newUser)
+    this.personService.addPerson(this.person)
       .subscribe(() => {
-        this.getUsers();
+        this.getPersons();
       });
   }
 
