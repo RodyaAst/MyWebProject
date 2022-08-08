@@ -2,7 +2,7 @@ package com.example.java.services;
 
 import com.example.java.entities.Drug;
 import com.example.java.entities.Person;
-import com.example.java.exporters.PersonPdfExporter;
+import com.example.java.exporters.excel.PersonExcelExporter;
 import com.example.java.guard.Guard;
 import com.example.java.input_parser.PersonInputParser;
 import com.example.java.inputs.PersonInput;
@@ -200,7 +200,7 @@ public class PersonService {
 
     public Workbook getPersonExcel() {
         var personList = getAllPersons();
-        var pdfExporter = new PersonPdfExporter(personList);
+        var pdfExporter = new PersonExcelExporter(personList);
         var workbook = pdfExporter.buildXlsx();
         return workbook;
     }

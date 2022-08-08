@@ -1,7 +1,7 @@
-package com.example.java.exporters;
+package com.example.java.exporters.excel;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
-public interface PdfExporter {
+public interface ExcelExporter {
     Workbook buildXlsx();
 }

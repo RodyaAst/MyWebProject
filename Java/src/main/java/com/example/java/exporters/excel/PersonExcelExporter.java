@@ -1,4 +1,4 @@
-package com.example.java.exporters;
+package com.example.java.exporters.excel;
 
 import com.example.java.entities.Person;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -9,13 +9,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.List;
 
-public class PersonPdfExporter implements PdfExporter {
+public class PersonExcelExporter implements ExcelExporter {
 
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private List<Person> personList;
 
-    public PersonPdfExporter(List<Person> personList) {
+    public PersonExcelExporter(List<Person> personList) {
         this.personList = personList;
     }
 
