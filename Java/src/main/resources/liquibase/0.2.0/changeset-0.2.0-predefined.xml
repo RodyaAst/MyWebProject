@@ -7,6 +7,11 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
     <changeSet id="1" author="Rodya">
+        <insert tableName="person_auth">
+            <column name="username" value="admin"/>
+            <column name="password" value="admin"/>
+            <column name="birth_year" value="2000"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
