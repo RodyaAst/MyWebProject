@@ -2,6 +2,7 @@ package com.example.java.services;
 
 import com.example.java.entities.Drug;
 import com.example.java.entities.Person;
+import com.example.java.exporters.PersonPdfExporter;
 import com.example.java.guard.Guard;
 import com.example.java.input_parser.PersonInputParser;
 import com.example.java.inputs.PersonInput;
@@ -10,6 +11,7 @@ import com.example.java.repositories.PersonRepository;
 import com.example.java.types.DosageType;
 import com.example.java.types.QueteletType;
 import com.example.java.validations.PersonValidation;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -194,5 +196,12 @@ public class PersonService {
 
         //TODO Drug Available Solver
         return false;
+    }
+
+    public Workbook getPersonExcel() {
+        var personList = getAllPersons();
+        var pdfExporter = new PersonPdfExporter(personList);
+        var workbook = pdfExporter.buildXlsx();
+        return workbook;
     }
 }
